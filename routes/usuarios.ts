@@ -1,13 +1,18 @@
 import { Router } from "express";
-import {createUser} from '../controllers/Usuario';
-
+import { createUser, getUsers } from '../controllers/Usuario';
+import { check } from "express-validator";
 
 const router = Router();
 
 
-//router.get('/',       getUsuarios );
+router.get('/', getUsers);
 //router.get('/:id',    getUsuario );
-router.post('/',      createUser );
+router.post(
+    '/',
+    [
+        check('')
+    ],
+    createUser);
 //router.put('/:id',    putUsuario );
 //router.delete('/:id', deleteUsuario );
 

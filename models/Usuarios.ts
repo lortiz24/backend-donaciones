@@ -34,4 +34,4 @@ const Usuario = Schema({
     },
 })
 
-export default Usuario;
+export default model('user',Usuario);

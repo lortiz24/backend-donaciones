@@ -32,5 +32,5 @@ const Usuario = Schema({
         default: true,
     },
 });
-exports.default = Usuario;
+exports.default = model('user', Usuario);
 //# sourceMappingURL=Usuarios.js.map
