@@ -14,12 +14,22 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const usuarios_1 = __importDefault(require("../routes/usuarios"));
+const books_1 = __importDefault(require("../routes/books"));
+//import devolucionRouter from '../routes/devoluciones';
+//import prestamoRouter from '../routes/prestamos';
+//import reservacionRouter from '../routes/reservaciones';
 const cors_1 = __importDefault(require("cors"));
 const config_1 = require("../db/config");
 class Server {
     constructor() {
         this.app = (0, express_1.default)();
         this.port = process.env.PORT || '8000';
+        //Inicializando rutas
+        this.userRoute = '/api/users';
+        this.bookRoute = '/api/books';
+        this.devolucionesRoute = '/api/devoluciones';
+        this.reservacionesRoute = '/api/reservaciones';
+        this.prestamosRoute = '/api/prestamos';
         //conection to DB
         this.dbConnection();
         //Middlewares
@@ -28,7 +38,11 @@ class Server {
         this.routes();
     }
     routes() {
-        this.app.use('/api/users', usuarios_1.default);
+        this.app.use(this.userRoute, usuarios_1.default);
+        this.app.use(this.bookRoute, books_1.default);
+        //this.app.use(this.devolucionesRoute, devolucionRouter)
+        //this.app.use(this.reservacionesRoute, reservacionRouter)
+        //this.app.use(this.prestamosRoute, prestamoRouter)
     }
     middlewares() {
         this.app.use(express_1.default.json());

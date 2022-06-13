@@ -5,7 +5,7 @@ export const validarCampos = (req: Request, res: Response, next: NextFunction) =
   const errors = validationResult(req);
   console.log(errors);
   if (!errors.isEmpty()) {
-    return res.status(404).json({ errors })
+    return res.status(404).json(errors )
   }
 
   next()
