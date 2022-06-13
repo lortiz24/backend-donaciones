@@ -8,18 +8,33 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __rest = (this && this.__rest) || function (s, e) {
+    var t = {};
+    for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p) && e.indexOf(p) < 0)
+        t[p] = s[p];
+    if (s != null && typeof Object.getOwnPropertySymbols === "function")
+        for (var i = 0, p = Object.getOwnPropertySymbols(s); i < p.length; i++) {
+            if (e.indexOf(p[i]) < 0 && Object.prototype.propertyIsEnumerable.call(s, p[i]))
+                t[p[i]] = s[p[i]];
+        }
+    return t;
+};
 var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deleteUser = exports.createUser = exports.getUsers = void 0;
+exports.deleteUser = exports.updateUSer = exports.createUser = exports.getUsers = void 0;
 const Usuarios_1 = __importDefault(require("../models/Usuarios"));
 const bcryptjs_1 = __importDefault(require("bcryptjs"));
 const getUsers = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { desde = 0, page = 1, limit = 5 } = req.query;
     const query = { estado: true };
-    const usuarios = yield Usuarios_1.default.find(query);
-    const total = yield Usuarios_1.default.countDocuments(query);
-    res.json({ total, body: usuarios });
+    const [usuarios, total] = yield Promise.all([Usuarios_1.default.find(query)
+            .skip(Number(desde))
+            .limit(Number(limit)),
+        Usuarios_1.default.countDocuments(query)
+    ]);
+    res.json({ desde, limit, page, total, body: usuarios });
 });
 exports.getUsers = getUsers;
 const createUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -33,6 +48,21 @@ const createUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
     res.json({ usuario });
 });
 exports.createUser = createUser;
+const updateUSer = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { id } = req.params;
+    const _a = req.body, { _id, password, google, correo } = _a, resto = __rest(_a, ["_id", "password", "google", "correo"]);
+    if (password) {
+        //Encriptar password y actualizar password
+        const salt = bcryptjs_1.default.genSaltSync(10);
+        resto['password'] = bcryptjs_1.default.hashSync(password, salt);
+    }
+    //Actualizar en base de datos
+    const usuario = yield Usuarios_1.default.findByIdAndUpdate(id, resto);
+    res.json({
+        usuario
+    });
+});
+exports.updateUSer = updateUSer;
 const deleteUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { id } = req.params;
     //Efectuar eliminacion

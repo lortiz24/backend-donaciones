@@ -2,6 +2,7 @@ import express, { Application } from 'express';
 import usuarioRouter from '../routes/usuarios';
 import cors from 'cors'
 import { dbConnection } from '../db/config';
+
 class Server{
     private app: Application
     private port: string
@@ -14,6 +15,7 @@ class Server{
         this.middlewares()
         //routes
         this.routes()
+
     }
 
     routes(){
