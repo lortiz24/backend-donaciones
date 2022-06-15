@@ -6,7 +6,10 @@ const express_validator_1 = require("express-validator");
 const db_validationPrestamos_1 = require("../helpers/db-validationPrestamos");
 const validarCampos_1 = require("../middlewares/validarCampos");
 const router = (0, express_1.Router)();
-router.get('/', prestamos_1.getPrestamos);
+router.get('/', [
+    (0, express_validator_1.query)('devuelto').custom(db_validationPrestamos_1.devueltoValido),
+    validarCampos_1.validarCampos
+], prestamos_1.getPrestamos);
 //router.get('/:id',    getUsuario );
 router.post("/", [
     (0, express_validator_1.check)('fechaI', 'La fechaI es requerida').notEmpty(),

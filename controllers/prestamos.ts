@@ -5,7 +5,7 @@ import Usuario from '../models/Usuarios'
 export const getPrestamos = async (req: Request, res: Response) => {
     const { desde = 0, page = 1, limit = 5, devuelto } = req.query
     let query;
-    if (devuelto==='false' || devuelto==='true') {
+    if (devuelto) {
          query = { estado: true,devuelto }
     } else {
          query = { estado: true }    

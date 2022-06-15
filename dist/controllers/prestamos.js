@@ -17,7 +17,7 @@ const prestamos_1 = __importDefault(require("../models/prestamos"));
 const getPrestamos = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { desde = 0, page = 1, limit = 5, devuelto } = req.query;
     let query;
-    if (devuelto === 'false' || devuelto === 'true') {
+    if (devuelto) {
         query = { estado: true, devuelto };
     }
     else {

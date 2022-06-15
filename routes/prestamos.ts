@@ -1,12 +1,18 @@
 import { Router } from "express";
 import { createPrestamos,deletePrestamos,getPrestamos,updatePrestamos} from '../controllers/prestamos';
 import { check,query } from "express-validator";
-import {existePrestamoById} from "../helpers/db-validationPrestamos";
+import {devueltoValido, existePrestamoById} from "../helpers/db-validationPrestamos";
 import { validarCampos } from "../middlewares/validarCampos";
 
 const router = Router();
 
-router.get('/',getPrestamos);
+router.get(
+  '/',
+  [ 
+    query('devuelto').custom(devueltoValido),
+    validarCampos
+  ],
+getPrestamos);
 //router.get('/:id',    getUsuario );
 router.post(
   "/",
