@@ -31,6 +31,11 @@ router.post(
 );
 router.put(
   '/:id',
+  [
+    check('id', 'El id no es valido').isMongoId(),
+    check('id').custom(existePrestamoById),
+    validarCampos
+  ],
   updatePrestamos);
 
 router.delete(

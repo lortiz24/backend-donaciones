@@ -22,7 +22,11 @@ router.post("/", [
     (0, express_validator_1.check)('book', 'El id de book no es un id valido').isMongoId(),
     validarCampos_1.validarCampos
 ], prestamos_1.createPrestamos);
-router.put('/:id', prestamos_1.updatePrestamos);
+router.put('/:id', [
+    (0, express_validator_1.check)('id', 'El id no es valido').isMongoId(),
+    (0, express_validator_1.check)('id').custom(db_validationPrestamos_1.existePrestamoById),
+    validarCampos_1.validarCampos
+], prestamos_1.updatePrestamos);
 router.delete('/:id', [
     (0, express_validator_1.check)('id', 'El id no es valido').isMongoId(),
     (0, express_validator_1.check)('id').custom(db_validationPrestamos_1.existePrestamoById),
