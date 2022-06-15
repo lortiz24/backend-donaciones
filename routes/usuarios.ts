@@ -14,6 +14,7 @@ router.post(
   [
     check('nombre', 'El nombre es obligatorio').not().isEmpty(),
     check('correo', 'El correo no es valido').isEmail(),
+    check('cedula', 'La cedula es obligatoria').not().isEmpty(),
     check('password', 'El password es obligatorio y debe tener mas de 6 letras').isLength({ min: 6 }),
     check('rol').custom(esRolValido),
     check('correo').custom(emailExists),

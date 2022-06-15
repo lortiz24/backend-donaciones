@@ -37,8 +37,8 @@ const getBooks = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
 });
 exports.getBooks = getBooks;
 const createBook = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { title, autores, paginas, genero, portada } = req.body;
-    const book = new books_1.default({ title, autores, paginas, genero, portada });
+    const { title, autores, paginas, genero, portada, editorial } = req.body;
+    const book = new books_1.default({ title, autores, paginas, genero, portada, editorial });
     //Guardar en base de datos
     yield book.save();
     res.json({ book });

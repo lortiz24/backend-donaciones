@@ -17,6 +17,10 @@ const Usuario = Schema({
         type: String,
         required: [true, "El nombre es requerido"],
     },
+    cedula: {
+        type: String,
+        required: [true, "La cedula es requerida"],
+    },
     correo: {
         type: String,
         required: [true, "El correo es requerido"],

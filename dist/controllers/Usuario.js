@@ -38,8 +38,8 @@ const getUsers = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
 });
 exports.getUsers = getUsers;
 const createUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { nombre, correo, password, rol } = req.body;
-    const usuario = new Usuarios_1.default({ nombre, correo, password, rol });
+    const { nombre, correo, password, rol, cedula } = req.body;
+    const usuario = new Usuarios_1.default({ nombre, correo, password, rol, cedula });
     //Encriptar password
     const salt = bcryptjs_1.default.genSaltSync(10);
     usuario.password = bcryptjs_1.default.hashSync(password, salt);

@@ -1,7 +1,8 @@
 import { Response, Request } from 'express'
 import Usuario from '../models/Usuarios'
 import bcryptjs from 'bcryptjs'
-import { validationResult } from 'express-validator'
+
+
 export const getUsers = async (req: Request, res: Response) => {
     const { desde = 0, page = 1, limit = 5 } = req.query
     const query = { estado: true }
@@ -14,8 +15,8 @@ export const getUsers = async (req: Request, res: Response) => {
     res.json({ desde, limit, page, total, body: usuarios })
 }
 export const createUser = async (req: Request, res: Response) => {
-    const { nombre, correo, password, rol } = req.body;
-    const usuario = new Usuario({ nombre, correo, password, rol });
+    const { nombre, correo, password, rol,cedula } = req.body;
+    const usuario = new Usuario({ nombre, correo, password, rol,cedula });
     //Encriptar password
     const salt = bcryptjs.genSaltSync(10);
     usuario.password = bcryptjs.hashSync(password, salt);

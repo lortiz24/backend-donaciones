@@ -19,10 +19,15 @@ const BookSchema = new mongoose_1.Schema({
     },
     autores: {
         type: Array,
-        required: [true, "El/los autor/es es requerido"],
+        default: ['Desconocido']
+    },
+    editorial: {
+        type: String,
+        default: 'Independiente'
     },
     paginas: {
         type: String,
+        required: [true, "Las paginas son requeridas"]
     },
     portada: {
         type: String,

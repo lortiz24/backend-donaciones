@@ -11,6 +11,7 @@ router.get('/', Usuario_1.getUsers);
 router.post("/", [
     (0, express_validator_1.check)('nombre', 'El nombre es obligatorio').not().isEmpty(),
     (0, express_validator_1.check)('correo', 'El correo no es valido').isEmail(),
+    (0, express_validator_1.check)('cedula', 'La cedula es obligatoria').not().isEmpty(),
     (0, express_validator_1.check)('password', 'El password es obligatorio y debe tener mas de 6 letras').isLength({ min: 6 }),
     (0, express_validator_1.check)('rol').custom(db_validationUser_1.esRolValido),
     (0, express_validator_1.check)('correo').custom(db_validationUser_1.emailExists),

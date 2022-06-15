@@ -16,7 +16,7 @@ const express_1 = __importDefault(require("express"));
 const usuarios_1 = __importDefault(require("../routes/usuarios"));
 const books_1 = __importDefault(require("../routes/books"));
 //import devolucionRouter from '../routes/devoluciones';
-//import prestamoRouter from '../routes/prestamos';
+const prestamos_1 = __importDefault(require("../routes/prestamos"));
 //import reservacionRouter from '../routes/reservaciones';
 const cors_1 = __importDefault(require("cors"));
 const config_1 = require("../db/config");
@@ -42,7 +42,7 @@ class Server {
         this.app.use(this.bookRoute, books_1.default);
         //this.app.use(this.devolucionesRoute, devolucionRouter)
         //this.app.use(this.reservacionesRoute, reservacionRouter)
-        //this.app.use(this.prestamosRoute, prestamoRouter)
+        this.app.use(this.prestamosRoute, prestamos_1.default);
     }
     middlewares() {
         this.app.use(express_1.default.json());

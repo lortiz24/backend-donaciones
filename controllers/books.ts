@@ -1,7 +1,5 @@
 import { Response, Request } from 'express'
 import Book from '../models/books'
-import bcryptjs from 'bcryptjs'
-import { validationResult } from 'express-validator'
 
 export const getBooks = async (req: Request, res: Response) => {
     const { desde = 0, page = 1, limit = 5 } = req.query
@@ -15,8 +13,8 @@ export const getBooks = async (req: Request, res: Response) => {
     res.json({ desde, limit, page, total, body: books })
 }
 export const createBook = async (req: Request, res: Response) => {
-    const { title, autores, paginas, genero,portada } = req.body;
-    const book = new Book({ title, autores, paginas, genero,portada });
+    const { title, autores, paginas, genero,portada,editorial } = req.body;
+    const book = new Book({ title, autores, paginas, genero,portada,editorial });
 
     //Guardar en base de datos
     await book.save()

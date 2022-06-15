@@ -12,7 +12,6 @@ router.post(
   "/",
   [
     check('title', 'El titulo es obligatorio').not().isEmpty(),
-    check('autores', 'Autores es obligatorio').not().isEmpty(),
     check('paginas', 'Las paginas son obligatorias').not().isEmpty(),
     check('portada', 'La portada es obligatoria').not().isEmpty(),
     check('genero', 'El genero es obligatorio').not().isEmpty(),

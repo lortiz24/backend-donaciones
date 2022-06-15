@@ -10,7 +10,6 @@ router.get('/', books_1.getBooks);
 //router.get('/:id',    getUsuario );
 router.post("/", [
     (0, express_validator_1.check)('title', 'El titulo es obligatorio').not().isEmpty(),
-    (0, express_validator_1.check)('autores', 'Autores es obligatorio').not().isEmpty(),
     (0, express_validator_1.check)('paginas', 'Las paginas son obligatorias').not().isEmpty(),
     (0, express_validator_1.check)('portada', 'La portada es obligatoria').not().isEmpty(),
     (0, express_validator_1.check)('genero', 'El genero es obligatorio').not().isEmpty(),
