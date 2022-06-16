@@ -12,6 +12,10 @@ const ReservacionSchema = new Schema({
         enum: ['Pendiente', 'Suspendido'],
         default: 'Pendiente'
     },
+    prioridad: {
+        type: String,
+        default: '1'
+    },
     lector: {
         type: Schema.Types.ObjectId,
         ref: "user",

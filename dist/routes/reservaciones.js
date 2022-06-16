@@ -27,6 +27,7 @@ router.post("/", [
 router.put('/:id', [
     (0, express_validator_1.check)('id', 'El id no es valido').isMongoId(),
     (0, express_validator_1.check)('id').custom(db_validationReservaciones_1.existeReservacionById),
+    (0, express_validator_1.check)('resolucion').isIn(['Pendiente', 'Suspendido']).withMessage(value => `${value} no es un valor valido`),
     validarCampos_1.validarCampos
 ], reservaciones_1.updateReservacion);
 router.delete('/:id', [

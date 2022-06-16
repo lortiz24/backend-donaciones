@@ -38,11 +38,18 @@ exports.getReservaciones = getReservaciones;
 const createReservacion = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { fechaReservacion, lector, book } = req.body;
     //Validar un usuario no reserve el mismo libro
-    const reservacionesByLector = yield reservaciones_1.default.find({ lector, book, estado: true });
+    //const reservacionesByLector = await Reservacion.find({ lector, book, estado: true })
+    const [reservacionesByLector, cantReservas] = yield Promise.all([
+        reservaciones_1.default.find({ lector, book, estado: true }),
+        reservaciones_1.default.find({ book, estado: true })
+    ]);
     if (reservacionesByLector.length !== 0) {
         return res.status(400).json({ msg: `Ya existe una reservacion del libro ${book} por el usuario: ${lector}` });
     }
     const reservacion = new reservaciones_1.default({ fechaReservacion, lector, book });
+    //Establecer prioridad
+    console.log(cantReservas.length + 1);
+    reservacion.prioridad = cantReservas.length + 1;
     //Guardar en base de datos
     yield reservacion.save();
     res.json({ reservacion });

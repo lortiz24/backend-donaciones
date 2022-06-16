@@ -22,6 +22,10 @@ const ReservacionSchema = new mongoose_1.Schema({
         enum: ['Pendiente', 'Suspendido'],
         default: 'Pendiente'
     },
+    prioridad: {
+        type: String,
+        default: '1'
+    },
     lector: {
         type: mongoose_1.Schema.Types.ObjectId,
         ref: "user",

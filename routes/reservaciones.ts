@@ -37,6 +37,7 @@ router.put(
   [
     check('id', 'El id no es valido').isMongoId(),
     check('id').custom(existeReservacionById),
+    check('resolucion').isIn(['Pendiente', 'Suspendido']).withMessage(value=>`${value} no es un valor valido`),
     validarCampos
   ],
   updateReservacion);
