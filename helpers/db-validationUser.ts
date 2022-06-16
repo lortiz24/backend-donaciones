@@ -17,6 +17,6 @@ export const emailExists=async(correo:string)=> {
 
 export const existeUserById=async(id:string)=> {
     const existeUsuario = await Usuario.findById(id);
-    if (!existeUsuario) throw new Error(`El id ${id} no existe en la base de datos` );
+    if (!existeUsuario) throw new Error(`No existe usuario con el id: ${id}` );
 }
 

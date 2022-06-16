@@ -5,6 +5,8 @@ const prestamos_1 = require("../controllers/prestamos");
 const express_validator_1 = require("express-validator");
 const db_validationPrestamos_1 = require("../helpers/db-validationPrestamos");
 const validarCampos_1 = require("../middlewares/validarCampos");
+const db_validationBook_1 = require("../helpers/db-validationBook");
+const db_validationUser_1 = require("../helpers/db-validationUser");
 const router = (0, express_1.Router)();
 router.get('/', [
     (0, express_validator_1.query)('devuelto').custom(db_validationPrestamos_1.devueltoValido),
@@ -18,8 +20,11 @@ router.post("/", [
     (0, express_validator_1.check)('fechaF', 'La fechaF no es una fecha valida').isDate(),
     (0, express_validator_1.check)('lector', 'El id de lector es requerida').notEmpty(),
     (0, express_validator_1.check)('lector', 'El id de lector no es un id valido').isMongoId(),
+    (0, express_validator_1.check)('lector').custom(db_validationUser_1.existeUserById),
     (0, express_validator_1.check)('book', 'El id de book es requerida').notEmpty(),
     (0, express_validator_1.check)('book', 'El id de book no es un id valido').isMongoId(),
+    (0, express_validator_1.check)('book').custom(db_validationPrestamos_1.libroNoPrestado),
+    (0, express_validator_1.check)('book').custom(db_validationBook_1.existeBookById),
     validarCampos_1.validarCampos
 ], prestamos_1.createPrestamos);
 router.put('/:id', [

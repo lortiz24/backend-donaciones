@@ -33,7 +33,7 @@ exports.emailExists = emailExists;
 const existeUserById = (id) => __awaiter(void 0, void 0, void 0, function* () {
     const existeUsuario = yield Usuarios_1.default.findById(id);
     if (!existeUsuario)
-        throw new Error(`El id ${id} no existe en la base de datos`);
+        throw new Error(`No existe usuario con el id: ${id}`);
 });
 exports.existeUserById = existeUserById;
 //# sourceMappingURL=db-validationUser.js.map

@@ -1,8 +1,10 @@
 import { Router } from "express";
 import { createPrestamos,deletePrestamos,getPrestamos,updatePrestamos} from '../controllers/prestamos';
 import { check,query } from "express-validator";
-import {devueltoValido, existePrestamoById} from "../helpers/db-validationPrestamos";
+import {devueltoValido, existePrestamoById,libroNoPrestado} from "../helpers/db-validationPrestamos";
 import { validarCampos } from "../middlewares/validarCampos";
+import { existeBookById } from "../helpers/db-validationBook";
+import { existeUserById } from "../helpers/db-validationUser";
 
 const router = Router();
 
@@ -23,8 +25,12 @@ router.post(
     check('fechaF', 'La fechaF no es una fecha valida').isDate(),
     check('lector', 'El id de lector es requerida').notEmpty(),
     check('lector', 'El id de lector no es un id valido').isMongoId(),
+    check('lector').custom(existeUserById),
     check('book', 'El id de book es requerida').notEmpty(),
     check('book', 'El id de book no es un id valido').isMongoId(),
+    check('book').custom(libroNoPrestado),
+    check('book').custom(existeBookById),
+    
     validarCampos
   ],
   createPrestamos

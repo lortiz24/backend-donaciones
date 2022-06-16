@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.devueltoValido = exports.existePrestamoById = void 0;
+exports.libroNoPrestado = exports.devueltoValido = exports.existePrestamoById = void 0;
 const prestamos_1 = __importDefault(require("../models/prestamos"));
 const existePrestamoById = (id) => __awaiter(void 0, void 0, void 0, function* () {
     const devuValido = yield prestamos_1.default.findById(id);
@@ -30,4 +30,15 @@ const devueltoValido = (devuelto) => {
     }
 };
 exports.devueltoValido = devueltoValido;
+const libroNoPrestado = (book) => __awaiter(void 0, void 0, void 0, function* () {
+    const prestado = yield prestamos_1.default.findOne({ book, devuelto: false });
+    console.log(prestado);
+    if (prestado) {
+        throw new Error(`No es posible registrar un prestamo de un libro prestado: ${book}`);
+    }
+    else {
+        return true;
+    }
+});
+exports.libroNoPrestado = libroNoPrestado;
 //# sourceMappingURL=db-validationPrestamos.js.map
