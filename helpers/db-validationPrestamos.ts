@@ -9,7 +9,7 @@ export const existePrestamoById = async (id: string) => {
 
 
 
-export const devueltoValido = (devuelto:string) => {
+export const devueltoValido =(devuelto:string) => {
     if (['true', 'false'].indexOf(devuelto) === -1 && devuelto!==undefined) {
         throw new Error(`El valor ${devuelto} no es un valor Boolean`)
     }else{

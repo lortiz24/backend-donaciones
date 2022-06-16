@@ -12,6 +12,8 @@ router.get(
   '/',
   [ 
     query('devuelto').custom(devueltoValido),
+    //query('devuelto').isIn(['true', 'false']),
+    
     validarCampos
   ],
 getPrestamos);

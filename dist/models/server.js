@@ -15,9 +15,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const usuarios_1 = __importDefault(require("../routes/usuarios"));
 const books_1 = __importDefault(require("../routes/books"));
-//import devolucionRouter from '../routes/devoluciones';
 const prestamos_1 = __importDefault(require("../routes/prestamos"));
-//import reservacionRouter from '../routes/reservaciones';
+const reservaciones_1 = __importDefault(require("../routes/reservaciones"));
 const cors_1 = __importDefault(require("cors"));
 const config_1 = require("../db/config");
 class Server {
@@ -40,8 +39,7 @@ class Server {
     routes() {
         this.app.use(this.userRoute, usuarios_1.default);
         this.app.use(this.bookRoute, books_1.default);
-        //this.app.use(this.devolucionesRoute, devolucionRouter)
-        //this.app.use(this.reservacionesRoute, reservacionRouter)
+        this.app.use(this.reservacionesRoute, reservaciones_1.default);
         this.app.use(this.prestamosRoute, prestamos_1.default);
     }
     middlewares() {

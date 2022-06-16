@@ -10,6 +10,7 @@ const db_validationUser_1 = require("../helpers/db-validationUser");
 const router = (0, express_1.Router)();
 router.get('/', [
     (0, express_validator_1.query)('devuelto').custom(db_validationPrestamos_1.devueltoValido),
+    //query('devuelto').isIn(['true', 'false']),
     validarCampos_1.validarCampos
 ], prestamos_1.getPrestamos);
 //router.get('/:id',    getUsuario );

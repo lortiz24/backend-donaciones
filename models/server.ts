@@ -1,9 +1,9 @@
 import express, { Application } from 'express';
 import usuarioRouter from '../routes/usuarios';
 import bookRouter from '../routes/books';
-//import devolucionRouter from '../routes/devoluciones';
+
 import prestamoRouter from '../routes/prestamos';
-//import reservacionRouter from '../routes/reservaciones';
+import reservacionRouter from '../routes/reservaciones';
 import cors from 'cors'
 import { dbConnection } from '../db/config';
 
@@ -36,8 +36,7 @@ class Server{
     routes(){
         this.app.use(this.userRoute, usuarioRouter)
         this.app.use(this.bookRoute, bookRouter)
-        //this.app.use(this.devolucionesRoute, devolucionRouter)
-        //this.app.use(this.reservacionesRoute, reservacionRouter)
+        this.app.use(this.reservacionesRoute, reservacionRouter)
         this.app.use(this.prestamosRoute, prestamoRouter)
     }
 
