@@ -5,6 +5,8 @@ const Usuario_1 = require("../controllers/Usuario");
 const express_validator_1 = require("express-validator");
 const db_validationUser_1 = require("../helpers/db-validationUser");
 const validarCampos_1 = require("../middlewares/validarCampos");
+const validadJWT_1 = require("../middlewares/validadJWT");
+const validar_Roles_1 = require("../middlewares/validar-Roles");
 const router = (0, express_1.Router)();
 router.get('/', Usuario_1.getUsers);
 //router.get('/:id',    getUsuario );
@@ -18,12 +20,16 @@ router.post("/", [
     validarCampos_1.validarCampos
 ], Usuario_1.createUser);
 router.put('/:id', [
+    validadJWT_1.validadJWT,
+    (0, validar_Roles_1.tieneRole)('ADMIN_ROLE'),
     (0, express_validator_1.check)('id', 'El id no es valido').isMongoId(),
     (0, express_validator_1.check)('id').custom(db_validationUser_1.existeUserById),
     (0, express_validator_1.check)('rol').custom(db_validationUser_1.esRolValido),
     validarCampos_1.validarCampos
 ], Usuario_1.updateUSer);
 router.delete('/:id', [
+    validadJWT_1.validadJWT,
+    (0, validar_Roles_1.tieneRole)('ADMIN_ROLE'),
     (0, express_validator_1.check)('id', 'El id no es valido').isMongoId(),
     (0, express_validator_1.check)('id').custom(db_validationUser_1.existeUserById),
     validarCampos_1.validarCampos

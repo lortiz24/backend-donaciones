@@ -40,8 +40,9 @@ export const updateUSer = async (req: Request, res: Response) => {
     });
 }
 export const deleteUser = async (req: Request, res: Response) => {
+    console.log('first')
     const { id } = req.params;
     //Efectuar eliminacion
-    const usuario = await Usuario.findByIdAndUpdate(id, { estado: false });
-    res.json({ usuario })
+    const usuarioEliminado = await Usuario.findByIdAndUpdate(id, { estado: false });
+    res.json({ usuarioEliminado,usuarioAutenticad:req.usuario })
 }

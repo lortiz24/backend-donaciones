@@ -64,10 +64,11 @@ const updateUSer = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
 });
 exports.updateUSer = updateUSer;
 const deleteUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    console.log('first');
     const { id } = req.params;
     //Efectuar eliminacion
-    const usuario = yield Usuarios_1.default.findByIdAndUpdate(id, { estado: false });
-    res.json({ usuario });
+    const usuarioEliminado = yield Usuarios_1.default.findByIdAndUpdate(id, { estado: false });
+    res.json({ usuarioEliminado, usuarioAutenticad: req.usuario });
 });
 exports.deleteUser = deleteUser;
 //# sourceMappingURL=Usuario.js.map

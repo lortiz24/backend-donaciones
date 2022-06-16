@@ -1,11 +1,13 @@
 import express, { Application } from 'express';
+import cors from 'cors'
+
+import { dbConnection } from '../db/config';
+
 import usuarioRouter from '../routes/usuarios';
 import bookRouter from '../routes/books';
-
 import prestamoRouter from '../routes/prestamos';
 import reservacionRouter from '../routes/reservaciones';
-import cors from 'cors'
-import { dbConnection } from '../db/config';
+import authRouter from '../routes/auth';
 
 class Server{
     private app: Application
@@ -15,6 +17,7 @@ class Server{
     private devolucionesRoute:string
     private reservacionesRoute:string
     private prestamosRoute:string
+    private authRoute:string
     constructor(){
         this.app = express();
         this.port = process.env.PORT || '8000'
@@ -24,6 +27,7 @@ class Server{
         this.devolucionesRoute='/api/devoluciones'
         this.reservacionesRoute='/api/reservaciones'
         this.prestamosRoute='/api/prestamos'
+        this.authRoute='/api/auth'
         //conection to DB
         this.dbConnection()
         //Middlewares
@@ -38,6 +42,7 @@ class Server{
         this.app.use(this.bookRoute, bookRouter)
         this.app.use(this.reservacionesRoute, reservacionRouter)
         this.app.use(this.prestamosRoute, prestamoRouter)
+        this.app.use(this.authRoute, authRouter)
     }
 
     middlewares(){

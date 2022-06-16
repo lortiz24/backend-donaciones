@@ -7,6 +7,8 @@ const db_validationPrestamos_1 = require("../helpers/db-validationPrestamos");
 const validarCampos_1 = require("../middlewares/validarCampos");
 const db_validationBook_1 = require("../helpers/db-validationBook");
 const db_validationUser_1 = require("../helpers/db-validationUser");
+const validadJWT_1 = require("../middlewares/validadJWT");
+const validar_Roles_1 = require("../middlewares/validar-Roles");
 const router = (0, express_1.Router)();
 router.get('/', [
     (0, express_validator_1.query)('devuelto').custom(db_validationPrestamos_1.devueltoValido),
@@ -15,6 +17,8 @@ router.get('/', [
 ], prestamos_1.getPrestamos);
 //router.get('/:id',    getUsuario );
 router.post("/", [
+    validadJWT_1.validadJWT,
+    (0, validar_Roles_1.tieneRole)('ADMIN_ROLE', 'USER_ROLE'),
     (0, express_validator_1.check)('fechaI', 'La fechaI es requerida').notEmpty(),
     (0, express_validator_1.check)('fechaI', 'La fechaI no es una fecha valida').isDate(),
     (0, express_validator_1.check)('fechaF', 'La fechaF es requerida').notEmpty(),
@@ -29,11 +33,15 @@ router.post("/", [
     validarCampos_1.validarCampos
 ], prestamos_1.createPrestamos);
 router.put('/:id', [
+    validadJWT_1.validadJWT,
+    (0, validar_Roles_1.tieneRole)('ADMIN_ROLE', 'USER_ROLE'),
     (0, express_validator_1.check)('id', 'El id no es valido').isMongoId(),
     (0, express_validator_1.check)('id').custom(db_validationPrestamos_1.existePrestamoById),
     validarCampos_1.validarCampos
 ], prestamos_1.updatePrestamos);
 router.delete('/:id', [
+    validadJWT_1.validadJWT,
+    (0, validar_Roles_1.tieneRole)('ADMIN_ROLE'),
     (0, express_validator_1.check)('id', 'El id no es valido').isMongoId(),
     (0, express_validator_1.check)('id').custom(db_validationPrestamos_1.existePrestamoById),
     validarCampos_1.validarCampos
