@@ -8,6 +8,7 @@ import bookRouter from '../routes/books';
 import prestamoRouter from '../routes/prestamos';
 import reservacionRouter from '../routes/reservaciones';
 import authRouter from '../routes/auth';
+import donanteRouter from '../routes/donantes';
 
 class Server{
     private app: Application
@@ -18,6 +19,7 @@ class Server{
     private reservacionesRoute:string
     private prestamosRoute:string
     private authRoute:string
+    private donanteRoute:string
     constructor(){
         this.app = express();
         this.port = process.env.PORT || '8000'
@@ -28,6 +30,7 @@ class Server{
         this.reservacionesRoute='/api/reservaciones'
         this.prestamosRoute='/api/prestamos'
         this.authRoute='/api/auth'
+        this.donanteRoute='/api/donante'
         //conection to DB
         this.dbConnection()
         //Middlewares
@@ -43,6 +46,7 @@ class Server{
         this.app.use(this.reservacionesRoute, reservacionRouter)
         this.app.use(this.prestamosRoute, prestamoRouter)
         this.app.use(this.authRoute, authRouter)
+        this.app.use(this.donanteRoute, donanteRouter)
     }
 
     middlewares(){
