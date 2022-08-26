@@ -1,4 +1,5 @@
 import { Response, Request } from 'express'
+import { mongo } from 'mongoose';
 import Donantes from '../models/Donantes';
 
 
@@ -11,29 +12,35 @@ export const getDonantes = async (req: Request, res: Response) => {
 
 }
 
+
+export const getDonante = async (req: Request, res: Response) => {
+    const { id } = req.params
+    const donantes = await Donantes.findById(id)
+    res.send(donantes)
+
+}
+
 export const createDonantes = async (req: Request, res: Response) => {
-    const { montoDonacion,nombre,tipo } = req.body as IRequestBodyDonaciones;
-    const donante = new Donantes({  montoDonacion,nombre,tipo });
+    const { montoDonacion, nombre, tipo } = req.body as IRequestBodyDonaciones;
+    const donante = new Donantes({ montoDonacion, nombre, tipo });
 
     //Guardar en base de datos
     await donante.save()
-    res.json({ donante })
+    res.send(donante)
 }
 
 export const updateDonantes = async (req: Request, res: Response) => {
     const { id } = req.params;
-    const { fechaF, devuelto } = req.body;
-
+    const { montoDonacion, nombre, tipo } = req.body as IRequestBodyDonaciones;
+    console.log(id, nombre)
     //Actualizar en base de datos
-    const donante = await Donantes.findByIdAndUpdate(id, { fechaF, devuelto });
-    res.json({
-        donante
-    });
+    const donante = await Donantes.findByIdAndUpdate(new mongo.ObjectId(id), { montoDonacion, nombre, tipo });
+    res.send(donante);
 }
 export const deleteDonantes = async (req: Request, res: Response) => {
     const { id } = req.params;
     //Efectuar eliminacion
-    const donante = await Donantes.findByIdAndUpdate(id, { estado: false });
+    const donante = await Donantes.findByIdAndDelete(id);
     res.json({ donante })
 
 

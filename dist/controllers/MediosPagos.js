@@ -12,11 +12,18 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deleteReservacion = exports.updateReservacion = exports.createReservacion = exports.getMediosDePago = void 0;
+exports.deleteReservacion = exports.updateReservacion = exports.createReservacion = exports.getMediosDePago = exports.getMediosDePagos = void 0;
 const MediosPagos_1 = __importDefault(require("../models/MediosPagos"));
+const getMediosDePagos = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const reservaciones = yield MediosPagos_1.default.find({});
+    res.status(200).send(reservaciones);
+});
+exports.getMediosDePagos = getMediosDePagos;
 const getMediosDePago = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const reservaciones = MediosPagos_1.default.find({});
-    res.send(reservaciones);
+    const { id } = req.params;
+    console.log(id);
+    const reservacion = yield MediosPagos_1.default.findById(id);
+    res.status(200).send(reservacion);
 });
 exports.getMediosDePago = getMediosDePago;
 const createReservacion = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
@@ -24,24 +31,22 @@ const createReservacion = (req, res) => __awaiter(void 0, void 0, void 0, functi
     const reservacion = new MediosPagos_1.default({ tipo, nombre });
     //Guardar en base de datos
     yield reservacion.save();
-    res.json({ reservacion });
+    res.status(201).send(reservacion);
 });
 exports.createReservacion = createReservacion;
 const updateReservacion = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { id } = req.params;
     const { nombre, tipo } = req.body;
     //Actualizar en base de datos
-    const reservacion = MediosPagos_1.default.findByIdAndUpdate(id, { nombre, tipo });
-    res.json({
-        reservacion
-    });
+    const reservacion = yield MediosPagos_1.default.findByIdAndUpdate(id, { nombre, tipo });
+    res.status(201).send(reservacion);
 });
 exports.updateReservacion = updateReservacion;
 const deleteReservacion = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { id } = req.params;
     //Efectuar eliminacion
-    const reservacion = MediosPagos_1.default.findByIdAndUpdate(id, { estado: false });
-    res.json({ reservacion });
+    const reservacion = yield MediosPagos_1.default.findByIdAndDelete(id);
+    res.send(reservacion);
 });
 exports.deleteReservacion = deleteReservacion;
 //# sourceMappingURL=MediosPagos.js.map

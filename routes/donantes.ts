@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { check } from "express-validator";
-import { createDonantes, deleteDonantes, getDonantes, updateDonantes } from "../controllers/Donantes";
+import { createDonantes, deleteDonantes,getDonante, getDonantes, updateDonantes } from "../controllers/Donantes";
 import { validarCampos } from "../middlewares/validarCampos";
 
 
@@ -8,6 +8,7 @@ import { validarCampos } from "../middlewares/validarCampos";
 const router = Router();
 
 router.get('/', getDonantes);
+router.get('/:id', getDonante);
 
 router.post(
     "/",

@@ -3,9 +3,6 @@ import cors from 'cors'
 
 import { dbConnection } from '../db/config';
 
-// import usuarioRouter from '../routes/usuarios';
-// import reservacionRouter from '../routes/MediosPagos';
-// import authRouter from '../routes/auth';
 import donanteRouter from '../routes/donantes';
 import mediosPagosRouter from '../routes/MediosPagos';
 
@@ -21,9 +18,7 @@ class Server {
         this.app = express();
         this.port = process.env.PORT || '8000'
         //Inicializando rutas
-        // this.userRoute = '/api/users'
-        // this.reservacionesRoute = '/api/reservaciones'
-        // this.authRoute = '/api/auth'
+
         this.donanteRoute = '/api/donante'
         this.mediosPagosRoute = '/api/medios_pagos'
         //conection to DB
@@ -36,9 +31,6 @@ class Server {
     }
 
     routes() {
-        // this.app.use(this.userRoute, usuarioRouter)
-        // this.app.use(this.reservacionesRoute, reservacionRouter)
-        // this.app.use(this.authRoute, authRouter)
         this.app.use(this.donanteRoute, donanteRouter)
         this.app.use(this.mediosPagosRoute, mediosPagosRouter)
     }

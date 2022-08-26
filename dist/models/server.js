@@ -15,9 +15,6 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const cors_1 = __importDefault(require("cors"));
 const config_1 = require("../db/config");
-// import usuarioRouter from '../routes/usuarios';
-// import reservacionRouter from '../routes/MediosPagos';
-// import authRouter from '../routes/auth';
 const donantes_1 = __importDefault(require("../routes/donantes"));
 const MediosPagos_1 = __importDefault(require("../routes/MediosPagos"));
 class Server {
@@ -25,9 +22,6 @@ class Server {
         this.app = (0, express_1.default)();
         this.port = process.env.PORT || '8000';
         //Inicializando rutas
-        // this.userRoute = '/api/users'
-        // this.reservacionesRoute = '/api/reservaciones'
-        // this.authRoute = '/api/auth'
         this.donanteRoute = '/api/donante';
         this.mediosPagosRoute = '/api/medios_pagos';
         //conection to DB
@@ -38,9 +32,6 @@ class Server {
         this.routes();
     }
     routes() {
-        // this.app.use(this.userRoute, usuarioRouter)
-        // this.app.use(this.reservacionesRoute, reservacionRouter)
-        // this.app.use(this.authRoute, authRouter)
         this.app.use(this.donanteRoute, donantes_1.default);
         this.app.use(this.mediosPagosRoute, MediosPagos_1.default);
     }

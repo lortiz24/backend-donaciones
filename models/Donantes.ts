@@ -15,18 +15,10 @@ const Donantes = Schema({
     tipo: {
         type: String,
         required: [true, "El tipo es requerido"],
-        unique: true
 
     },
     
-    // google: {
-    //     type: Boolean,
-    //     default: false,
-    // },
-    estado: {
-        type: Boolean,
-        default: true,
-    },
+    
 })
 Donantes.methods.toJSON = function(){
     const {__v,_id,...donante}=this.toObject();

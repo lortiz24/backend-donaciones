@@ -24,7 +24,7 @@ const resolucionValido = (devuelto) => {
 };
 exports.resolucionValido = resolucionValido;
 const existeReservacionById = (id) => __awaiter(void 0, void 0, void 0, function* () {
-    const existeReservacion = yield MediosPagos_1.default.findById(id);
+    const existeReservacion = MediosPagos_1.default.findById(id);
     if (!existeReservacion) {
         throw new Error(`No existe una reservacion con id: ${id} `);
     }

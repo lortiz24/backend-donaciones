@@ -9,7 +9,7 @@ export const resolucionValido =(devuelto:string) => {
 }
 
 export const existeReservacionById = async(id:string) => {
-    const existeReservacion= await Reservacion.findById(id)
+    const existeReservacion=  Reservacion.findById(id)
     if (!existeReservacion) {
         throw new Error(`No existe una reservacion con id: ${id} `)
     }else{
