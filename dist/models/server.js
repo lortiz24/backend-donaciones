@@ -15,22 +15,21 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const cors_1 = __importDefault(require("cors"));
 const config_1 = require("../db/config");
-const usuarios_1 = __importDefault(require("../routes/usuarios"));
-const books_1 = __importDefault(require("../routes/books"));
-const prestamos_1 = __importDefault(require("../routes/prestamos"));
-const reservaciones_1 = __importDefault(require("../routes/reservaciones"));
-const auth_1 = __importDefault(require("../routes/auth"));
+// import usuarioRouter from '../routes/usuarios';
+// import reservacionRouter from '../routes/MediosPagos';
+// import authRouter from '../routes/auth';
+const donantes_1 = __importDefault(require("../routes/donantes"));
+const MediosPagos_1 = __importDefault(require("../routes/MediosPagos"));
 class Server {
     constructor() {
         this.app = (0, express_1.default)();
         this.port = process.env.PORT || '8000';
         //Inicializando rutas
-        this.userRoute = '/api/users';
-        this.bookRoute = '/api/books';
-        this.devolucionesRoute = '/api/devoluciones';
-        this.reservacionesRoute = '/api/reservaciones';
-        this.prestamosRoute = '/api/prestamos';
-        this.authRoute = '/api/auth';
+        // this.userRoute = '/api/users'
+        // this.reservacionesRoute = '/api/reservaciones'
+        // this.authRoute = '/api/auth'
+        this.donanteRoute = '/api/donante';
+        this.mediosPagosRoute = '/api/medios_pagos';
         //conection to DB
         this.dbConnection();
         //Middlewares
@@ -39,11 +38,11 @@ class Server {
         this.routes();
     }
     routes() {
-        this.app.use(this.userRoute, usuarios_1.default);
-        this.app.use(this.bookRoute, books_1.default);
-        this.app.use(this.reservacionesRoute, reservaciones_1.default);
-        this.app.use(this.prestamosRoute, prestamos_1.default);
-        this.app.use(this.authRoute, auth_1.default);
+        // this.app.use(this.userRoute, usuarioRouter)
+        // this.app.use(this.reservacionesRoute, reservacionRouter)
+        // this.app.use(this.authRoute, authRouter)
+        this.app.use(this.donanteRoute, donantes_1.default);
+        this.app.use(this.mediosPagosRoute, MediosPagos_1.default);
     }
     middlewares() {
         this.app.use(express_1.default.json());

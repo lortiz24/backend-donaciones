@@ -2,11 +2,7 @@ import { Response, Request } from 'express'
 import Donantes from '../models/Donantes';
 
 
-interface IRequestBody {
-    nombre: string;
-    montoDonacion:number,
-    tipo:string
-}
+
 
 export const getDonantes = async (req: Request, res: Response) => {
 
@@ -16,7 +12,7 @@ export const getDonantes = async (req: Request, res: Response) => {
 }
 
 export const createDonantes = async (req: Request, res: Response) => {
-    const { montoDonacion,nombre,tipo } = req.body as IRequestBody;
+    const { montoDonacion,nombre,tipo } = req.body as IRequestBodyDonaciones;
     const donante = new Donantes({  montoDonacion,nombre,tipo });
 
     //Guardar en base de datos

@@ -1,7 +1,6 @@
 import { Router } from "express";
 import { check } from "express-validator";
 import { createDonantes, deleteDonantes, getDonantes, updateDonantes } from "../controllers/Donantes";
-import { existeBookById } from "../helpers/db-validationBook";
 import { validarCampos } from "../middlewares/validarCampos";
 
 
@@ -23,7 +22,6 @@ router.put(
     '/:id',
     [
         check('id', 'El id no es valido').isMongoId(),
-        check('id').custom(existeBookById),
         validarCampos
     ],
     updateDonantes);
@@ -32,7 +30,6 @@ router.delete(
     '/:id',
     [
         check('id', 'El id no es valido').isMongoId(),
-        check('id').custom(existeBookById),
         validarCampos
     ],
     deleteDonantes);

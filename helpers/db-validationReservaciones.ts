@@ -1,4 +1,4 @@
-import Reservacion from "../models/reservaciones"
+import Reservacion from "../models/MediosPagos"
 
 export const resolucionValido =(devuelto:string) => {
     if (['Pendiente', 'Suspendido'].indexOf(devuelto) === -1 && devuelto!==undefined) {
@@ -15,16 +15,4 @@ export const existeReservacionById = async(id:string) => {
     }else{
         return true
     }
-}
-export const libroReservadoByLector = async(book:string,lector='') => {
-
-    console.log(book)
-    
-  /*   const reservacionesByLector= await Reservacion.find({lector})
-    reservacionesByLector.map((item: typeof Reservacion)=>{
-        if (item.book === book) {
-            throw new Error(`Ya existe una reservacion del libro ${book} por el usuario: ${lector}`)
-        }
-    }) */
-    
 }
