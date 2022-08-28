@@ -15,9 +15,9 @@ export const getDonacion = async (req: Request, res: Response) => {
 
 }
 export const createDonacion = async (req: Request, res: Response) => {
-    const {donante,proyecto,fecha_inicio,fecha_objetivo,monto_meta} = req.body as IRequestBodyDonacion;
+    const {donante,proyecto,fecha_inicio,fecha_objetivo,monto_meta,medio_pago} = req.body as IRequestBodyDonacion;
 
-    const Donacion = new DonacionesModels({ donante,proyecto,fecha_inicio });
+    const Donacion = new DonacionesModels({ donante,proyecto,fecha_inicio,medio_pago });
     if(fecha_objetivo !== undefined) Donacion.fecha_objetivo=fecha_objetivo;
     if(monto_meta !== undefined) Donacion.monto_meta=monto_meta;
     //Guardar en base de datos

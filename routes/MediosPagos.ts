@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { createReservacion, deleteReservacion, getMediosDePago, getMediosDePagos, updateReservacion } from '../controllers/MediosPagos';
+import { createMedioDePago, deleteReservacion, getMediosDePago, getMediosDePagos, updateMedioDePago } from '../controllers/MediosPagos';
 import { check } from "express-validator";
 import { validarCampos } from "../middlewares/validarCampos";
 import { existeReservacionById } from "../helpers/db-validationReservaciones";
@@ -11,7 +11,8 @@ router.get('/', getMediosDePagos);
 router.get('/:id', getMediosDePago);
 router.post(
   "/",
-  createReservacion
+  
+  createMedioDePago
 );
 router.put(
   '/:id',
@@ -20,7 +21,7 @@ router.put(
     check('id').custom(existeReservacionById),
     validarCampos
   ],
-  updateReservacion);
+  updateMedioDePago);
 
 router.delete(
   '/:id',
@@ -30,7 +31,6 @@ router.delete(
     validarCampos
   ],
   deleteReservacion);
-
-
+validarCampos
 
 export default router;

@@ -14,7 +14,7 @@ export const getMediosDePago = async (req: Request, res: Response) => {
     res.status(200).send(reservacion)
 
 }
-export const createReservacion = async (req: Request, res: Response) => {
+export const createMedioDePago = async (req: Request, res: Response) => {
     const { tipo, nombre } = req.body as IRequestBodyMediosPagos
 
     const reservacion = new MediosPagos({ tipo, nombre });
@@ -25,7 +25,7 @@ export const createReservacion = async (req: Request, res: Response) => {
 
 }
 
-export const updateReservacion = async (req: Request, res: Response) => {
+export const updateMedioDePago = async (req: Request, res: Response) => {
     const { id } = req.params;
     const { nombre, tipo } = req.body as IRequestBodyMediosPagos;
 

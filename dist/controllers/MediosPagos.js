@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.deleteReservacion = exports.updateReservacion = exports.createReservacion = exports.getMediosDePago = exports.getMediosDePagos = void 0;
+exports.deleteReservacion = exports.updateMedioDePago = exports.createMedioDePago = exports.getMediosDePago = exports.getMediosDePagos = void 0;
 const MediosPagos_1 = __importDefault(require("../models/MediosPagos"));
 const getMediosDePagos = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const reservaciones = yield MediosPagos_1.default.find({});
@@ -26,22 +26,22 @@ const getMediosDePago = (req, res) => __awaiter(void 0, void 0, void 0, function
     res.status(200).send(reservacion);
 });
 exports.getMediosDePago = getMediosDePago;
-const createReservacion = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+const createMedioDePago = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { tipo, nombre } = req.body;
     const reservacion = new MediosPagos_1.default({ tipo, nombre });
     //Guardar en base de datos
     yield reservacion.save();
     res.status(201).send(reservacion);
 });
-exports.createReservacion = createReservacion;
-const updateReservacion = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+exports.createMedioDePago = createMedioDePago;
+const updateMedioDePago = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { id } = req.params;
     const { nombre, tipo } = req.body;
     //Actualizar en base de datos
     const reservacion = yield MediosPagos_1.default.findByIdAndUpdate(id, { nombre, tipo });
     res.status(201).send(reservacion);
 });
-exports.updateReservacion = updateReservacion;
+exports.updateMedioDePago = updateMedioDePago;
 const deleteReservacion = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { id } = req.params;
     //Efectuar eliminacion

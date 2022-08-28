@@ -8,16 +8,17 @@ const db_validationReservaciones_1 = require("../helpers/db-validationReservacio
 const router = (0, express_1.Router)();
 router.get('/', MediosPagos_1.getMediosDePagos);
 router.get('/:id', MediosPagos_1.getMediosDePago);
-router.post("/", MediosPagos_1.createReservacion);
+router.post("/", MediosPagos_1.createMedioDePago);
 router.put('/:id', [
     (0, express_validator_1.check)('id', 'El id no es valido').isMongoId(),
     (0, express_validator_1.check)('id').custom(db_validationReservaciones_1.existeReservacionById),
     validarCampos_1.validarCampos
-], MediosPagos_1.updateReservacion);
+], MediosPagos_1.updateMedioDePago);
 router.delete('/:id', [
     (0, express_validator_1.check)('id', 'El id no es valido').isMongoId(),
     (0, express_validator_1.check)('id').custom(db_validationReservaciones_1.existeReservacionById),
     validarCampos_1.validarCampos
 ], MediosPagos_1.deleteReservacion);
+validarCampos_1.validarCampos;
 exports.default = router;
 //# sourceMappingURL=MediosPagos.js.map

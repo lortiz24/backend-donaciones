@@ -12,6 +12,11 @@ const Donaciones = Schema({
         ref: "donante",
         required: [true, "El id del donante es requerido"]
     },
+    medio_pago: {
+        type: Schema.Types.ObjectId,
+        ref: "mediosPago",
+        required: [true, "El id de mediosPago  es requerido"]
+    },
     monto_meta: {
         type: String,
     },

@@ -20,6 +20,7 @@ interface IRequestBodyProyectos {
 interface IRequestBodyDonacion {
     proyecto: string;
     donante: string;
+    medio_pago: string;
     monto_meta?: string;
     fecha_inicio: Date;
     fecha_objetivo?: Date;

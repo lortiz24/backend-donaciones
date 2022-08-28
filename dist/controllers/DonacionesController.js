@@ -27,8 +27,8 @@ const getDonacion = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
 });
 exports.getDonacion = getDonacion;
 const createDonacion = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { donante, proyecto, fecha_inicio, fecha_objetivo, monto_meta } = req.body;
-    const Donacion = new DonacionesModels_1.default({ donante, proyecto, fecha_inicio });
+    const { donante, proyecto, fecha_inicio, fecha_objetivo, monto_meta, medio_pago } = req.body;
+    const Donacion = new DonacionesModels_1.default({ donante, proyecto, fecha_inicio, medio_pago });
     if (fecha_objetivo !== undefined)
         Donacion.fecha_objetivo = fecha_objetivo;
     if (monto_meta !== undefined)
