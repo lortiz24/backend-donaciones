@@ -12,10 +12,10 @@ interface IRequestBodyMediosPagos {
 }
 
 interface IRequestBodyProyectos {
-    img: string;
+    img?: string;
     descripcion: string;
-    lider?: string;
-    caracteristica?: string;
+    title: string;
+    other?: string;
 }
 interface IRequestBodyDonacion {
     proyecto: string;

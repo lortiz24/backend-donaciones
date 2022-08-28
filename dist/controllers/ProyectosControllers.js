@@ -27,8 +27,12 @@ const getProyecto = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
 });
 exports.getProyecto = getProyecto;
 const createProyecto = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { descripcion, caracteristica, img, lider } = req.body;
-    const proyecto = new ProyectosModels_1.default({ descripcion, caracteristica, img, lider });
+    const { descripcion, img, title, other } = req.body;
+    const proyecto = new ProyectosModels_1.default({ descripcion, title });
+    if (img !== undefined)
+        proyecto.img = img;
+    if (other !== undefined)
+        proyecto.img = other;
     //Guardar en base de datos
     yield proyecto.save();
     res.status(201).send(proyecto);
@@ -36,16 +40,17 @@ const createProyecto = (req, res) => __awaiter(void 0, void 0, void 0, function*
 exports.createProyecto = createProyecto;
 const updateProyecto = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { id } = req.params;
-    const { descripcion, img, caracteristica, lider } = req.body;
+    const { descripcion, img, title, other } = req.body;
     let updateProyect = {};
     if (descripcion !== undefined)
         updateProyect = Object.assign(Object.assign({}, updateProyect), { descripcion });
     if (img !== undefined)
         updateProyect = Object.assign(Object.assign({}, updateProyect), { img });
-    if (caracteristica !== undefined)
-        updateProyect = Object.assign(Object.assign({}, updateProyect), { caracteristica });
-    if (lider !== undefined)
-        updateProyect = Object.assign(Object.assign({}, updateProyect), { lider });
+    if (title !== undefined)
+        updateProyect = Object.assign(Object.assign({}, updateProyect), { title });
+    if (other !== undefined)
+        updateProyect = Object.assign(Object.assign({}, updateProyect), { other });
+    console.log(updateProyect);
     //Actualizar en base de datos
     const proyecto = yield ProyectosModels_1.default.findByIdAndUpdate(id, updateProyect);
     res.status(201).send(proyecto);
