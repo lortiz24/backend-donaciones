@@ -5,6 +5,8 @@ import { dbConnection } from '../db/config';
 
 import donanteRouter from '../routes/donantes';
 import mediosPagosRouter from '../routes/MediosPagos';
+import proyectosRoutes from '../routes/ProyectosRoutes';
+import donacionesRoutes from '../routes/DonacionesRoutes';
 
 class Server {
     private app: Application
@@ -14,6 +16,8 @@ class Server {
     // private authRoute: string
     private donanteRoute: string
     private mediosPagosRoute: string
+    private proyectosRoute: string
+    private donacionesRoute: string
     constructor() {
         this.app = express();
         this.port = process.env.PORT || '8000'
@@ -21,6 +25,8 @@ class Server {
 
         this.donanteRoute = '/api/donante'
         this.mediosPagosRoute = '/api/medios_pagos'
+        this.proyectosRoute = '/api/proyectos'
+        this.donacionesRoute = '/api/donaciones'
         //conection to DB
         this.dbConnection()
         //Middlewares
@@ -33,6 +39,8 @@ class Server {
     routes() {
         this.app.use(this.donanteRoute, donanteRouter)
         this.app.use(this.mediosPagosRoute, mediosPagosRouter)
+        this.app.use(this.proyectosRoute, proyectosRoutes)
+        this.app.use(this.donacionesRoute, donacionesRoutes)
     }
 
     middlewares() {

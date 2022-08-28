@@ -17,6 +17,12 @@ const Donantes = Schema({
         required: [true, "El tipo es requerido"],
 
     },
+    cantidad: {
+        type: Number,
+        required: [true, "La cantidad es requerida"],
+
+    },
+    
     
     
 })

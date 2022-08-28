@@ -12,28 +12,35 @@ var __rest = (this && this.__rest) || function (s, e) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const { Schema, model } = require('mongoose');
-const Donantes = Schema({
-    nombre: {
+const Donaciones = Schema({
+    proyecto: {
+        type: Schema.Types.ObjectId,
+        ref: "proyecto",
+        required: [true, "El id del proyecto es requerido"]
+    },
+    donante: {
+        type: Schema.Types.ObjectId,
+        ref: "donante",
+        required: [true, "El id del donante es requerido"]
+    },
+    monto_meta: {
         type: String,
-        default: 'donante Anonimo',
     },
-    montoDonacion: {
+    monto_recaudado: {
         type: Number,
-        required: [true, "El monto es requerido"],
     },
-    tipo: {
-        type: String,
-        required: [true, "El tipo es requerido"],
+    fecha_inicio: {
+        type: Date,
+        required: [true, "La fecha de inicio es requerida"]
     },
-    cantidad: {
-        type: Number,
-        required: [true, "La cantidad es requerida"],
+    fecha_objetivo: {
+        type: Date,
     },
 });
-Donantes.methods.toJSON = function () {
+Donaciones.methods.toJSON = function () {
     const _a = this.toObject(), { __v, _id } = _a, donante = __rest(_a, ["__v", "_id"]);
-    donante.uid = _id;
+    donante.id = _id;
     return donante;
 };
-exports.default = model('donante', Donantes);
-//# sourceMappingURL=Donantes.js.map
+exports.default = model('donacion', Donaciones);
+//# sourceMappingURL=DonacionesModels.js.map

@@ -2,23 +2,23 @@
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
 const express_validator_1 = require("express-validator");
-const Donantes_1 = require("../controllers/Donantes");
+const DonacionesController_1 = require("../controllers/DonacionesController");
 const validarCampos_1 = require("../middlewares/validarCampos");
 const router = (0, express_1.Router)();
-router.get('/', Donantes_1.getDonantes);
-router.get('/:id', Donantes_1.getDonante);
+router.get('/', DonacionesController_1.getDonaciones);
+router.get('/:id', DonacionesController_1.getDonacion);
 router.post("/", [
-    (0, express_validator_1.check)('montoDonacion', 'El montoDonacion es obligatorio').not().isEmpty(),
-    (0, express_validator_1.check)('tipo', 'El tipo es obligatorio').not().isEmpty(),
+    (0, express_validator_1.check)('proyecto', 'El proyecto no es valido').isMongoId(),
+    (0, express_validator_1.check)('donante', 'El donante no es valido').isMongoId(),
     validarCampos_1.validarCampos
-], Donantes_1.createDonantes);
+], DonacionesController_1.createDonacion);
 router.put('/:id', [
     (0, express_validator_1.check)('id', 'El id no es valido').isMongoId(),
     validarCampos_1.validarCampos
-], Donantes_1.updateDonantes);
+], DonacionesController_1.updateDonacion);
 router.delete('/:id', [
     (0, express_validator_1.check)('id', 'El id no es valido').isMongoId(),
     validarCampos_1.validarCampos
-], Donantes_1.deleteDonantes);
+], DonacionesController_1.deleteDonacion);
 exports.default = router;
-//# sourceMappingURL=donantes.js.map
+//# sourceMappingURL=DonacionesRoutes.js.map
