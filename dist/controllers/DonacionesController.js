@@ -14,7 +14,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.deleteDonacion = exports.updateDonacion = exports.createDonacion = exports.getDonacion = exports.getDonaciones = void 0;
 const DonacionesModels_1 = __importDefault(require("../models/DonacionesModels"));
-const ProyectosModels_1 = __importDefault(require("../models/ProyectosModels"));
 const getDonaciones = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const Donaciones = yield DonacionesModels_1.default.find({});
@@ -43,9 +42,6 @@ const createDonacion = (req, res) => __awaiter(void 0, void 0, void 0, function*
         const Donacion = new DonacionesModels_1.default({ donante, proyecto, medio_pago, monto_donacion, nombre, tipo });
         //Guardar en base de datos
         yield Donacion.save();
-        const protectoUp = yield ProyectosModels_1.default.findById(proyecto);
-        console.log(protectoUp.monto_recaudado);
-        yield ProyectosModels_1.default.findByIdAndUpdate(proyecto, { monto_recaudado: protectoUp.monto_recaudado + monto_donacion });
         res.status(201).send(Donacion);
     }
     catch (error) {

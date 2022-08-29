@@ -20,11 +20,6 @@ const Proyectos = Schema({
     monto_meta: {
         type: Number,
     },
-    monto_recaudado: {
-        type: Number,
-        default: 0,
-    },
-
     fecha_inicio: {
         type: Date,
         required: [true, "La fecha de inicio es requerida"]
