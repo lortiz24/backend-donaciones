@@ -10,7 +10,7 @@ export const getDonantes = async (req: Request, res: Response) => {
         const donantes = await Donantes.find({})
         res.send(donantes)
     } catch (error: any) {
-        res.status(500).send(error.message);
+        res.json({error:error.message});
     }
 
 }
@@ -23,7 +23,7 @@ export const getDonante = async (req: Request, res: Response) => {
         const donantes = await Donantes.findById(id)
         res.send(donantes)
     } catch (error: any) {
-        res.status(500).send(error.message);
+        res.json({error:error.message});
     }
 
 }
@@ -39,7 +39,7 @@ export const createDonantes = async (req: Request, res: Response) => {
         res.send(donante)
 
     } catch (error: any) {
-        res.status(500).send(error.message);
+        res.json({error:error.message});
     }
 }
 
@@ -58,7 +58,7 @@ export const deleteDonantes = async (req: Request, res: Response) => {
         const donante = await Donantes.findByIdAndDelete(id);
         res.json({ donante })
     } catch (error: any) {
-        res.status(500).send(error.message);
+        res.json({error:error.message});
     }
 
 

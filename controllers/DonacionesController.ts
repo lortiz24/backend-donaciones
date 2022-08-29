@@ -7,7 +7,7 @@ export const getDonaciones = async (req: Request, res: Response) => {
         const Donaciones = await DonacionesModels.find({})
         res.status(200).send(Donaciones)
     } catch (error: any) {
-        res.status(500).send(error.message);
+        res.json({error:error.message});
     }
 
 }
@@ -18,7 +18,7 @@ export const getDonacion = async (req: Request, res: Response) => {
         const Donacion = await DonacionesModels.findById(id)
         res.status(200).send(Donacion)
     } catch (error: any) {
-        res.status(500).send(error.message);
+        res.json({error:error.message});
     }
 
 }
@@ -62,7 +62,7 @@ export const deleteDonacion = async (req: Request, res: Response) => {
         const Donacion = await DonacionesModels.findByIdAndDelete(id);
         res.send(Donacion)
     } catch (error: any) {
-        res.status(500).send(error.message);
+        res.json({error:error.message});
     }
 
 

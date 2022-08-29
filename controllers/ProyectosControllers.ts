@@ -7,7 +7,7 @@ export const getProyectos = async (req: Request, res: Response) => {
         const proyectos = await Proyectos.find({})
         res.status(200).send(proyectos)
     } catch (error: any) {
-        res.status(500).send(error.message);
+        res.json({error:error.message});
     }
 
 }
@@ -18,7 +18,7 @@ export const getProyecto = async (req: Request, res: Response) => {
         const proyecto = await Proyectos.findById(id)
         res.status(200).send(proyecto)
     } catch (error: any) {
-        res.status(500).send(error.message);
+        res.json({error:error.message});
     }
 
 }
@@ -36,7 +36,7 @@ export const createProyecto = async (req: Request, res: Response) => {
         await proyecto.save()
         res.status(201).send(proyecto)
     } catch (error: any) {
-        res.send(error.message);
+        res.json({error:error.message});
     }
 
 }
@@ -59,7 +59,7 @@ export const updateProyecto = async (req: Request, res: Response) => {
         const proyecto = await Proyectos.findByIdAndUpdate(id, updateProyect);
         res.status(201).send(proyecto);
     } catch (error: any) {
-        res.status(500).send(error.message);
+        res.json({error:error.message});
     }
 }
 export const deleteProyecto = async (req: Request, res: Response) => {
@@ -69,7 +69,7 @@ export const deleteProyecto = async (req: Request, res: Response) => {
         const proyecto = await Proyectos.findByIdAndDelete(id);
         res.send(proyecto)
     } catch (error: any) {
-        res.status(500).send(error.message);
+        res.json({error:error.message});
     }
 
 
