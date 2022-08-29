@@ -13,18 +13,13 @@ var __rest = (this && this.__rest) || function (s, e) {
 Object.defineProperty(exports, "__esModule", { value: true });
 const { Schema, model } = require('mongoose');
 const Donantes = Schema({
-    nombre: {
-        type: String,
-        default: 'donante Anonimo',
-        required: [true, "El nombre es requerido"],
+    fecha: {
+        type: Date,
     },
-    monto_donacion: {
-        type: Number,
-        required: [true, "El monto es requerido"],
-    },
-    tipo: {
+    ip: {
         type: String,
-        required: [true, "El tipo es requerido"],
+        required: [true, "Ip es requerido"],
+        unique: true,
     },
 });
 Donantes.methods.toJSON = function () {
@@ -32,5 +27,5 @@ Donantes.methods.toJSON = function () {
     donante.uid = _id;
     return donante;
 };
-exports.default = model('donante', Donantes);
+exports.default = model('visita', Donantes);
 //# sourceMappingURL=Donantes.js.map

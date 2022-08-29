@@ -31,8 +31,8 @@ export const getDonante = async (req: Request, res: Response) => {
 export const createDonantes = async (req: Request, res: Response) => {
     try {
 
-        const { nombre, tipo } = req.body as IRequestBodyDonantes;
-        const donante = new Donantes({ nombre, tipo });
+        const { ip } = req.body as IRequestBodyDonantes;
+        const donante = new Donantes({ ip });
 
         //Guardar en base de datos
         await donante.save()
@@ -45,10 +45,10 @@ export const createDonantes = async (req: Request, res: Response) => {
 
 export const updateDonantes = async (req: Request, res: Response) => {
     const { id } = req.params;
-    const { nombre, tipo } = req.body as IRequestBodyDonantes;
-    console.log(id, nombre)
+    const { ip } = req.body as IRequestBodyDonantes;
+    
     //Actualizar en base de datos
-    const donante = await Donantes.findByIdAndUpdate(new mongo.ObjectId(id), { nombre, tipo });
+    const donante = await Donantes.findByIdAndUpdate(new mongo.ObjectId(id), { ip });
     res.send(donante);
 }
 export const deleteDonantes = async (req: Request, res: Response) => {

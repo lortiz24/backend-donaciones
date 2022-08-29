@@ -14,9 +14,7 @@ router.get('/:id', getDonante);
 router.post(
     "/",
     [
-        check('monto_donacion', 'El monto_donacion es obligatorio').not().isEmpty(),
-        check('tipo', 'El tipo es obligatorio').not().isEmpty(),
-        check('nombre', 'El nombre es obligatorio').not().isEmpty(),
+        check('ip', 'Ip es obligatorio').not().isEmpty(),
         validarCampos
     ],
     createDonantes

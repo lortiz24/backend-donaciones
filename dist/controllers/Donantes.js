@@ -38,8 +38,8 @@ const getDonante = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
 exports.getDonante = getDonante;
 const createDonantes = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const { nombre, tipo } = req.body;
-        const donante = new Donantes_1.default({ nombre, tipo });
+        const { ip } = req.body;
+        const donante = new Donantes_1.default({ ip });
         //Guardar en base de datos
         yield donante.save();
         res.send(donante);
@@ -51,10 +51,9 @@ const createDonantes = (req, res) => __awaiter(void 0, void 0, void 0, function*
 exports.createDonantes = createDonantes;
 const updateDonantes = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { id } = req.params;
-    const { nombre, tipo } = req.body;
-    console.log(id, nombre);
+    const { ip } = req.body;
     //Actualizar en base de datos
-    const donante = yield Donantes_1.default.findByIdAndUpdate(new mongoose_1.mongo.ObjectId(id), { nombre, tipo });
+    const donante = yield Donantes_1.default.findByIdAndUpdate(new mongoose_1.mongo.ObjectId(id), { ip });
     res.send(donante);
 });
 exports.updateDonantes = updateDonantes;

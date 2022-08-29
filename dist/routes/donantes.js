@@ -9,9 +9,7 @@ const router = (0, express_1.Router)();
 router.get('/', Donantes_1.getDonantes);
 router.get('/:id', Donantes_1.getDonante);
 router.post("/", [
-    (0, express_validator_1.check)('monto_donacion', 'El monto_donacion es obligatorio').not().isEmpty(),
-    (0, express_validator_1.check)('tipo', 'El tipo es obligatorio').not().isEmpty(),
-    (0, express_validator_1.check)('nombre', 'El nombre es obligatorio').not().isEmpty(),
+    (0, express_validator_1.check)('ip', 'Ip es obligatorio').not().isEmpty(),
     validarCampos_1.validarCampos
 ], Donantes_1.createDonantes);
 router.put('/:id', [
