@@ -15,43 +15,68 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.deleteDonacion = exports.updateDonacion = exports.createDonacion = exports.getDonacion = exports.getDonaciones = void 0;
 const DonacionesModels_1 = __importDefault(require("../models/DonacionesModels"));
 const getDonaciones = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const Donaciones = yield DonacionesModels_1.default.find({});
-    res.status(200).send(Donaciones);
+    try {
+        const Donaciones = yield DonacionesModels_1.default.find({});
+        res.status(200).send(Donaciones);
+    }
+    catch (error) {
+        res.status(500).send(error.message);
+    }
 });
 exports.getDonaciones = getDonaciones;
 const getDonacion = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { id } = req.params;
-    console.log(id);
-    const Donacion = yield DonacionesModels_1.default.findById(id);
-    res.status(200).send(Donacion);
+    try {
+        const { id } = req.params;
+        console.log(id);
+        const Donacion = yield DonacionesModels_1.default.findById(id);
+        res.status(200).send(Donacion);
+    }
+    catch (error) {
+        res.status(500).send(error.message);
+    }
 });
 exports.getDonacion = getDonacion;
 const createDonacion = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { donante, proyecto, medio_pago } = req.body;
-    const Donacion = new DonacionesModels_1.default({ donante, proyecto, medio_pago });
-    //Guardar en base de datos
-    yield Donacion.save();
-    res.status(201).send(Donacion);
+    try {
+        const { donante, proyecto, medio_pago } = req.body;
+        const Donacion = new DonacionesModels_1.default({ donante, proyecto, medio_pago });
+        //Guardar en base de datos
+        yield Donacion.save();
+        res.status(201).send(Donacion);
+    }
+    catch (error) {
+        res.status(500).send(error.message);
+    }
 });
 exports.createDonacion = createDonacion;
 const updateDonacion = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { id } = req.params;
-    const { donante, proyecto } = req.body;
-    let updateDonacion = {};
-    if (donante !== undefined)
-        updateDonacion = Object.assign(Object.assign({}, updateDonacion), { donante });
-    if (proyecto !== undefined)
-        updateDonacion = Object.assign(Object.assign({}, updateDonacion), { proyecto });
-    //Actualizar en base de datos
-    const Donacion = yield DonacionesModels_1.default.findByIdAndUpdate(id, updateDonacion);
-    res.status(201).send(Donacion);
+    try {
+        const { id } = req.params;
+        const { donante, proyecto } = req.body;
+        let updateDonacion = {};
+        if (donante !== undefined)
+            updateDonacion = Object.assign(Object.assign({}, updateDonacion), { donante });
+        if (proyecto !== undefined)
+            updateDonacion = Object.assign(Object.assign({}, updateDonacion), { proyecto });
+        //Actualizar en base de datos
+        const Donacion = yield DonacionesModels_1.default.findByIdAndUpdate(id, updateDonacion);
+        res.status(201).send(Donacion);
+    }
+    catch (err) {
+        res.status(500).send(err);
+    }
 });
 exports.updateDonacion = updateDonacion;
 const deleteDonacion = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { id } = req.params;
-    //Efectuar eliminacion
-    const Donacion = yield DonacionesModels_1.default.findByIdAndDelete(id);
-    res.send(Donacion);
+    try {
+        const { id } = req.params;
+        //Efectuar eliminacion
+        const Donacion = yield DonacionesModels_1.default.findByIdAndDelete(id);
+        res.send(Donacion);
+    }
+    catch (error) {
+        res.status(500).send(error.message);
+    }
 });
 exports.deleteDonacion = deleteDonacion;
 //# sourceMappingURL=DonacionesController.js.map

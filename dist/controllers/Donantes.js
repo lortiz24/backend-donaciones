@@ -16,38 +16,63 @@ exports.deleteDonantes = exports.updateDonantes = exports.createDonantes = expor
 const mongoose_1 = require("mongoose");
 const Donantes_1 = __importDefault(require("../models/Donantes"));
 const getDonantes = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const donantes = yield Donantes_1.default.find({});
-    res.send(donantes);
+    try {
+        const donantes = yield Donantes_1.default.find({});
+        res.send(donantes);
+    }
+    catch (error) {
+        res.status(500).send(error.message);
+    }
 });
 exports.getDonantes = getDonantes;
 const getDonante = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { id } = req.params;
-    const donantes = yield Donantes_1.default.findById(id);
-    res.send(donantes);
+    try {
+        const { id } = req.params;
+        const donantes = yield Donantes_1.default.findById(id);
+        res.send(donantes);
+    }
+    catch (error) {
+        res.status(500).send(error.message);
+    }
 });
 exports.getDonante = getDonante;
 const createDonantes = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { monto_donacion, nombre, tipo } = req.body;
-    const donante = new Donantes_1.default({ monto_donacion, nombre, tipo });
-    //Guardar en base de datos
-    yield donante.save();
-    res.send(donante);
+    try {
+        const { monto_donacion, nombre, tipo } = req.body;
+        const donante = new Donantes_1.default({ monto_donacion, nombre, tipo });
+        //Guardar en base de datos
+        yield donante.save();
+        res.send(donante);
+    }
+    catch (error) {
+        res.status(500).send(error.message);
+    }
 });
 exports.createDonantes = createDonantes;
 const updateDonantes = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { id } = req.params;
-    const { monto_donacion, nombre, tipo } = req.body;
-    console.log(id, nombre);
-    //Actualizar en base de datos
-    const donante = yield Donantes_1.default.findByIdAndUpdate(new mongoose_1.mongo.ObjectId(id), { monto_donacion, nombre, tipo });
-    res.send(donante);
+    try {
+        const { id } = req.params;
+        const { monto_donacion, nombre, tipo } = req.body;
+        console.log(id, nombre);
+        //Actualizar en base de datos
+        const donante = yield Donantes_1.default.findByIdAndUpdate(new mongoose_1.mongo.ObjectId(id), { monto_donacion, nombre, tipo });
+        res.send(donante);
+    }
+    catch (error) {
+        res.status(500).send(error.message);
+    }
 });
 exports.updateDonantes = updateDonantes;
 const deleteDonantes = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { id } = req.params;
-    //Efectuar eliminacion
-    const donante = yield Donantes_1.default.findByIdAndDelete(id);
-    res.json({ donante });
+    try {
+        const { id } = req.params;
+        //Efectuar eliminacion
+        const donante = yield Donantes_1.default.findByIdAndDelete(id);
+        res.json({ donante });
+    }
+    catch (error) {
+        res.status(500).send(error.message);
+    }
 });
 exports.deleteDonantes = deleteDonantes;
 //# sourceMappingURL=Donantes.js.map

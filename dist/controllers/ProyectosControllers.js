@@ -15,56 +15,81 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.deleteProyecto = exports.updateProyecto = exports.createProyecto = exports.getProyecto = exports.getProyectos = void 0;
 const ProyectosModels_1 = __importDefault(require("../models/ProyectosModels"));
 const getProyectos = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const proyectos = yield ProyectosModels_1.default.find({});
-    res.status(200).send(proyectos);
+    try {
+        const proyectos = yield ProyectosModels_1.default.find({});
+        res.status(200).send(proyectos);
+    }
+    catch (error) {
+        res.status(500).send(error.message);
+    }
 });
 exports.getProyectos = getProyectos;
 const getProyecto = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { id } = req.params;
-    console.log(id);
-    const proyecto = yield ProyectosModels_1.default.findById(id);
-    res.status(200).send(proyecto);
+    try {
+        const { id } = req.params;
+        console.log(id);
+        const proyecto = yield ProyectosModels_1.default.findById(id);
+        res.status(200).send(proyecto);
+    }
+    catch (error) {
+        res.status(500).send(error.message);
+    }
 });
 exports.getProyecto = getProyecto;
 const createProyecto = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { descripcion, img, title, other, fecha_inicio, fecha_objetivo, monto_meta } = req.body;
-    const proyecto = new ProyectosModels_1.default({ descripcion, title, fecha_inicio });
-    if (fecha_objetivo !== undefined)
-        proyecto.fecha_objetivo = fecha_objetivo;
-    if (monto_meta !== undefined)
-        proyecto.monto_meta = monto_meta;
-    if (img !== undefined)
-        proyecto.img = img;
-    if (other !== undefined)
-        proyecto.img = other;
-    //Guardar en base de datos
-    yield proyecto.save();
-    res.status(201).send(proyecto);
+    try {
+        const { descripcion, img, title, other, fecha_inicio, fecha_objetivo, monto_meta } = req.body;
+        const proyecto = new ProyectosModels_1.default({ descripcion, title, fecha_inicio });
+        if (fecha_objetivo !== undefined)
+            proyecto.fecha_objetivo = fecha_objetivo;
+        if (monto_meta !== undefined)
+            proyecto.monto_meta = monto_meta;
+        if (img !== undefined)
+            proyecto.img = img;
+        if (other !== undefined)
+            proyecto.img = other;
+        //Guardar en base de datos
+        yield proyecto.save();
+        res.status(201).send(proyecto);
+    }
+    catch (error) {
+        res.send(error.message);
+    }
 });
 exports.createProyecto = createProyecto;
 const updateProyecto = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { id } = req.params;
-    const { descripcion, img, title, other, fecha_inicio, fecha_objetivo, monto_meta } = req.body;
-    let updateProyect = {};
-    if (descripcion !== undefined)
-        updateProyect = Object.assign(Object.assign({}, updateProyect), { descripcion });
-    if (img !== undefined)
-        updateProyect = Object.assign(Object.assign({}, updateProyect), { img });
-    if (title !== undefined)
-        updateProyect = Object.assign(Object.assign({}, updateProyect), { title });
-    if (other !== undefined)
-        updateProyect = Object.assign(Object.assign({}, updateProyect), { other });
-    console.log(updateProyect);
-    //Actualizar en base de datos
-    const proyecto = yield ProyectosModels_1.default.findByIdAndUpdate(id, updateProyect);
-    res.status(201).send(proyecto);
+    try {
+        const { id } = req.params;
+        const { descripcion, img, title, other, fecha_inicio, fecha_objetivo, monto_meta } = req.body;
+        let updateProyect = {};
+        if (descripcion !== undefined)
+            updateProyect = Object.assign(Object.assign({}, updateProyect), { descripcion });
+        if (img !== undefined)
+            updateProyect = Object.assign(Object.assign({}, updateProyect), { img });
+        if (title !== undefined)
+            updateProyect = Object.assign(Object.assign({}, updateProyect), { title });
+        if (other !== undefined)
+            updateProyect = Object.assign(Object.assign({}, updateProyect), { other });
+        console.log(updateProyect);
+        //Actualizar en base de datos
+        const proyecto = yield ProyectosModels_1.default.findByIdAndUpdate(id, updateProyect);
+        res.status(201).send(proyecto);
+    }
+    catch (error) {
+        res.status(500).send(error.message);
+    }
 });
 exports.updateProyecto = updateProyecto;
 const deleteProyecto = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { id } = req.params;
-    //Efectuar eliminacion
-    const proyecto = yield ProyectosModels_1.default.findByIdAndDelete(id);
-    res.send(proyecto);
+    try {
+        const { id } = req.params;
+        //Efectuar eliminacion
+        const proyecto = yield ProyectosModels_1.default.findByIdAndDelete(id);
+        res.send(proyecto);
+    }
+    catch (error) {
+        res.status(500).send(error.message);
+    }
 });
 exports.deleteProyecto = deleteProyecto;
 //# sourceMappingURL=ProyectosControllers.js.map
