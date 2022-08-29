@@ -27,8 +27,8 @@ const getDonacion = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
 });
 exports.getDonacion = getDonacion;
 const createDonacion = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { donante, proyecto, medio_pago } = req.body;
-    const Donacion = new DonacionesModels_1.default({ donante, proyecto, medio_pago });
+    const { donante, proyecto, medio_pago, monto_donacion, nombre, tipo } = req.body;
+    const Donacion = new DonacionesModels_1.default({ donante, proyecto, medio_pago, monto_donacion, nombre, tipo });
     //Guardar en base de datos
     yield Donacion.save();
     res.status(201).send(Donacion);
@@ -36,8 +36,16 @@ const createDonacion = (req, res) => __awaiter(void 0, void 0, void 0, function*
 exports.createDonacion = createDonacion;
 const updateDonacion = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { id } = req.params;
-    const { donante, proyecto } = req.body;
+    const { donante, proyecto, medio_pago, monto_donacion, nombre, tipo } = req.body;
     let updateDonacion = {};
+    if (tipo !== undefined)
+        updateDonacion = Object.assign(Object.assign({}, updateDonacion), { tipo });
+    if (nombre !== undefined)
+        updateDonacion = Object.assign(Object.assign({}, updateDonacion), { nombre });
+    if (medio_pago !== undefined)
+        updateDonacion = Object.assign(Object.assign({}, updateDonacion), { medio_pago });
+    if (monto_donacion !== undefined)
+        updateDonacion = Object.assign(Object.assign({}, updateDonacion), { monto_donacion });
     if (donante !== undefined)
         updateDonacion = Object.assign(Object.assign({}, updateDonacion), { donante });
     if (proyecto !== undefined)
