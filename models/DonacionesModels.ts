@@ -15,9 +15,24 @@ const Donaciones = Schema({
     medio_pago: {
         type: String,
         required: [true, "El id de mediosPago  es requerido"],
-        enum: ['DEBITO', 'CREDITO']
+
     },
-    
+    monto_donacion: {
+        type: String,
+        required: [true, "monto_donacion es requerido"],
+
+    },
+    nombre: {
+        type: String,
+        required: [true, "nombrees requerido"],
+
+    },
+    tipo: {
+        type: String,
+        required: [true, "tipo  es requerido"],
+
+    },
+
 
 
 })
