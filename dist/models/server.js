@@ -18,6 +18,7 @@ const config_1 = require("../db/config");
 const donantes_1 = __importDefault(require("../routes/donantes"));
 const ProyectosRoutes_1 = __importDefault(require("../routes/ProyectosRoutes"));
 const DonacionesRoutes_1 = __importDefault(require("../routes/DonacionesRoutes"));
+const ApiRoutes_1 = __importDefault(require("../routes/ApiRoutes"));
 class Server {
     constructor() {
         this.app = (0, express_1.default)();
@@ -26,6 +27,7 @@ class Server {
         this.donanteRoute = '/api/donante';
         this.proyectosRoute = '/api/proyectos';
         this.donacionesRoute = '/api/donaciones';
+        this.api = '/';
         //conection to DB
         this.dbConnection();
         //Middlewares
@@ -37,6 +39,7 @@ class Server {
         this.app.use(this.donanteRoute, donantes_1.default);
         this.app.use(this.proyectosRoute, ProyectosRoutes_1.default);
         this.app.use(this.donacionesRoute, DonacionesRoutes_1.default);
+        this.app.use(this.api, ApiRoutes_1.default);
     }
     middlewares() {
         this.app.use(express_1.default.json());

@@ -6,6 +6,7 @@ import { dbConnection } from '../db/config';
 import donanteRouter from '../routes/donantes';
 import proyectosRoutes from '../routes/ProyectosRoutes';
 import donacionesRoutes from '../routes/DonacionesRoutes';
+import apiRoutes from '../routes/ApiRoutes';
 
 class Server {
     private app: Application
@@ -16,6 +17,7 @@ class Server {
     private donanteRoute: string
     private proyectosRoute: string
     private donacionesRoute: string
+    private api: string
     constructor() {
         this.app = express();
         this.port = process.env.PORT || '8000'
@@ -24,6 +26,7 @@ class Server {
         this.donanteRoute = '/api/donante'
         this.proyectosRoute = '/api/proyectos'
         this.donacionesRoute = '/api/donaciones'
+        this.api = '/'
         //conection to DB
         this.dbConnection()
         //Middlewares
@@ -37,6 +40,7 @@ class Server {
         this.app.use(this.donanteRoute, donanteRouter)
         this.app.use(this.proyectosRoute, proyectosRoutes)
         this.app.use(this.donacionesRoute, donacionesRoutes)
+        this.app.use(this.api, apiRoutes)
     }
 
     middlewares() {
