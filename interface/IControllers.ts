@@ -2,7 +2,6 @@ const { Schema, model } = require('mongoose')
 
 interface IRequestBodyDonantes {
     nombre: string;
-    monto_donacion: number,
     tipo: string
 }
 
@@ -19,5 +18,8 @@ interface IRequestBodyDonacion {
     proyecto: string;
     donante: string;
     medio_pago: string;
+    monto_donacion: number,
+    nombre: string;
+    tipo: string
 
 }

@@ -22,7 +22,6 @@ const Proyectos = Schema({
     },
     monto_recaudado: {
         type: Number,
-        default: 0,
     },
 
     fecha_inicio: {

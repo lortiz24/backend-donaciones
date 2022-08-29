@@ -29,31 +29,27 @@ export const getDonante = async (req: Request, res: Response) => {
 }
 
 export const createDonantes = async (req: Request, res: Response) => {
-
     try {
-        const { monto_donacion, nombre, tipo } = req.body as IRequestBodyDonantes;
-        const donante = new Donantes({ monto_donacion, nombre, tipo });
+
+        const { nombre, tipo } = req.body as IRequestBodyDonantes;
+        const donante = new Donantes({ nombre, tipo });
 
         //Guardar en base de datos
         await donante.save()
         res.send(donante)
+
     } catch (error: any) {
         res.status(500).send(error.message);
     }
 }
 
 export const updateDonantes = async (req: Request, res: Response) => {
-    try {
-
-        const { id } = req.params;
-        const { monto_donacion, nombre, tipo } = req.body as IRequestBodyDonantes;
-        console.log(id, nombre)
-        //Actualizar en base de datos
-        const donante = await Donantes.findByIdAndUpdate(new mongo.ObjectId(id), { monto_donacion, nombre, tipo });
-        res.send(donante);
-    } catch (error: any) {
-        res.status(500).send(error.message);
-    }
+    const { id } = req.params;
+    const { nombre, tipo } = req.body as IRequestBodyDonantes;
+    console.log(id, nombre)
+    //Actualizar en base de datos
+    const donante = await Donantes.findByIdAndUpdate(new mongo.ObjectId(id), { nombre, tipo });
+    res.send(donante);
 }
 export const deleteDonantes = async (req: Request, res: Response) => {
     try {

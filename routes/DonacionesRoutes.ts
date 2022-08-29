@@ -20,6 +20,9 @@ router.post(
         check('proyecto', 'El proyecto no es valido').isMongoId(),
         check('donante', 'El donante no es valido').isMongoId(),
         check('medio_pago', 'El medio_pago es requerido').not().isEmpty(),
+        check('monto_donacion', 'El monto_donacion es requerido').not().isEmpty(),
+        check('tipo', 'El tipo es obligatorio').not().isEmpty(),
+        check('nombre', 'El nombre es obligatorio').not().isEmpty(),
         validarCampos
     ],
     createDonacion
