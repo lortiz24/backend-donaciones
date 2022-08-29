@@ -7,7 +7,7 @@ const Donantes = Schema({
         default: 'donante Anonimo',
 
     },
-    montoDonacion: {
+    monto_donacion: {
         type: Number,
         required: [true, "El monto es requerido"],
 
@@ -17,10 +17,8 @@ const Donantes = Schema({
         required: [true, "El tipo es requerido"],
 
     },
-    cantidad: {
-        type: Number,
-        required: [true, "La cantidad es requerida"],
-
+    direccion_ip: {
+        type: String,
     },
     
     

@@ -2,9 +2,9 @@ const { Schema, model } = require('mongoose')
 
 
 const Proyectos = Schema({
-    img:{
-        type:String,
-        default:'none',
+    img: {
+        type: String,
+        default: 'none',
     },
     descripcion: {
         type: String,
@@ -14,7 +14,22 @@ const Proyectos = Schema({
     title: {
         type: String,
         default: 'none',
+        required: [true, "El tittle es requerido"], 
 
+    },
+    monto_meta: {
+        type: String,
+    },
+    monto_recaudado: {
+        type: Number,
+    },
+
+    fecha_inicio: {
+        type: Date,
+        required: [true, "La fecha de inicio es requerida"]
+    },
+    fecha_objetivo: {
+        type: Date,
     },
     other: {
         type: JSON,

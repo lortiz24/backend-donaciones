@@ -25,6 +25,19 @@ const Proyectos = Schema({
         type: String,
         default: 'none',
     },
+    monto_meta: {
+        type: String,
+    },
+    monto_recaudado: {
+        type: Number,
+    },
+    fecha_inicio: {
+        type: Date,
+        required: [true, "La fecha de inicio es requerida"]
+    },
+    fecha_objetivo: {
+        type: Date,
+    },
     other: {
         type: JSON,
     },

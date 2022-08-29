@@ -15,11 +15,14 @@ export const getProyecto = async (req: Request, res: Response) => {
 
 }
 export const createProyecto = async (req: Request, res: Response) => {
-    const { descripcion, img, title,other } = req.body as IRequestBodyProyectos
+    const { descripcion, img, title, other, fecha_inicio, fecha_objetivo, monto_meta } = req.body as IRequestBodyProyectos
 
-    const proyecto = new Proyectos({ descripcion, title });
-    if(img!== undefined)proyecto.img=img
-    if(other!== undefined)proyecto.img=other
+    const proyecto = new Proyectos({ descripcion, title, fecha_inicio });
+
+    if (fecha_objetivo !== undefined) proyecto.fecha_objetivo = fecha_objetivo;
+    if (monto_meta !== undefined) proyecto.monto_meta = monto_meta;
+    if (img !== undefined) proyecto.img = img
+    if (other !== undefined) proyecto.img = other
     //Guardar en base de datos
     await proyecto.save()
     res.status(201).send(proyecto)
@@ -28,7 +31,7 @@ export const createProyecto = async (req: Request, res: Response) => {
 
 export const updateProyecto = async (req: Request, res: Response) => {
     const { id } = req.params;
-    const { descripcion, img, title,other } = req.body as IRequestBodyProyectos;
+    const { descripcion, img, title, other, fecha_inicio, fecha_objetivo, monto_meta } = req.body as IRequestBodyProyectos
     let updateProyect = {}
 
     if (descripcion !== undefined) updateProyect = { ...updateProyect, descripcion }
@@ -36,6 +39,8 @@ export const updateProyecto = async (req: Request, res: Response) => {
     if (title !== undefined) updateProyect = { ...updateProyect, title }
     if (other !== undefined) updateProyect = { ...updateProyect, other }
 
+
+    
     console.log(updateProyect)
     //Actualizar en base de datos
     const proyecto = await Proyectos.findByIdAndUpdate(id, updateProyect);

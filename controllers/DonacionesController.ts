@@ -15,11 +15,10 @@ export const getDonacion = async (req: Request, res: Response) => {
 
 }
 export const createDonacion = async (req: Request, res: Response) => {
-    const {donante,proyecto,fecha_inicio,fecha_objetivo,monto_meta,medio_pago} = req.body as IRequestBodyDonacion;
+    const {donante,proyecto,medio_pago} = req.body as IRequestBodyDonacion;
 
-    const Donacion = new DonacionesModels({ donante,proyecto,fecha_inicio,medio_pago });
-    if(fecha_objetivo !== undefined) Donacion.fecha_objetivo=fecha_objetivo;
-    if(monto_meta !== undefined) Donacion.monto_meta=monto_meta;
+    const Donacion = new DonacionesModels({ donante,proyecto,medio_pago });
+    
     //Guardar en base de datos
     await Donacion.save()
     res.status(201).send(Donacion)
@@ -28,16 +27,14 @@ export const createDonacion = async (req: Request, res: Response) => {
 
 export const updateDonacion = async (req: Request, res: Response) => {
     const { id } = req.params;
-    const {donante,proyecto,fecha_inicio,fecha_objetivo,monto_meta} = req.body as IRequestBodyDonacion;
-    let updateProyect = {}
+    const {donante,proyecto} = req.body as IRequestBodyDonacion;
+    let updateDonacion = {}
 
-    if (donante !== undefined) updateProyect = { ...updateProyect, donante }
-    if (proyecto !== undefined) updateProyect = { ...updateProyect, proyecto }
-    if (fecha_inicio !== undefined) updateProyect = { ...updateProyect, fecha_inicio }
-    if (fecha_objetivo !== undefined) updateProyect = { ...updateProyect, fecha_objetivo }
-    if (monto_meta !== undefined) updateProyect = { ...updateProyect, monto_meta }
+    if (donante !== undefined) updateDonacion = { ...updateDonacion, donante }
+    if (proyecto !== undefined) updateDonacion = { ...updateDonacion, proyecto }
+    
     //Actualizar en base de datos
-    const Donacion = await DonacionesModels.findByIdAndUpdate(id, updateProyect);
+    const Donacion = await DonacionesModels.findByIdAndUpdate(id, updateDonacion);
     res.status(201).send(Donacion);
 }
 export const deleteDonacion = async (req: Request, res: Response) => {

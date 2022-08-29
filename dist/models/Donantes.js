@@ -29,6 +29,9 @@ const Donantes = Schema({
         type: Number,
         required: [true, "La cantidad es requerida"],
     },
+    direccion_ip: {
+        type: String,
+    },
 });
 Donantes.methods.toJSON = function () {
     const _a = this.toObject(), { __v, _id } = _a, donante = __rest(_a, ["__v", "_id"]);

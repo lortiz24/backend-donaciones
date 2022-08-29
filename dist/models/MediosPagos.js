@@ -22,10 +22,6 @@ const MediosPagos = new mongoose_1.Schema({
         required: [true, "the tipi is required"],
         enum: ['DEBITO', 'CREDITO']
     },
-    estado: {
-        type: Boolean,
-        default: true,
-    }
 });
 MediosPagos.methods.toJSON = function () {
     const _a = this.toObject(), { __v } = _a, prestamo = __rest(_a, ["__v"]);
