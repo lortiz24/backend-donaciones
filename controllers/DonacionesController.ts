@@ -1,5 +1,6 @@
 import { Response, Request } from 'express'
 import DonacionesModels from '../models/DonacionesModels'
+import ProyectosModels from '../models/ProyectosModels'
 
 
 export const getDonaciones = async (req: Request, res: Response) => {
@@ -28,6 +29,7 @@ export const createDonacion = async (req: Request, res: Response) => {
         const Donacion = new DonacionesModels({ donante, proyecto, medio_pago, monto_donacion, nombre, tipo });
         //Guardar en base de datos
         await Donacion.save()
+
         res.status(201).send(Donacion)
     } catch (error: any) {
         console.log(error)

@@ -7,11 +7,11 @@ const Donaciones = Schema({
         ref: "proyecto",
         required: [true, "El id del proyecto es requerido"]
     },
-    donante: {
-        type: Schema.Types.ObjectId,
-        ref: "donante",
-        required: [true, "El id del donante es requerido"]
-    },
+    // donante: {
+    //     type: Schema.Types.ObjectId,
+    //     ref: "donante",
+    //     required: [true, "El id del donante es requerido"]
+    // },
     medio_pago: {
         type: String,
         required: [true, "El id de mediosPago  es requerido"],
@@ -24,7 +24,7 @@ const Donaciones = Schema({
     },
     nombre: {
         type: String,
-        required: [true, "nombrees requerido"],
+        default: "ANONIMO",
 
     },
     tipo: {
