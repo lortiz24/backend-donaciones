@@ -23,7 +23,7 @@ class Server {
         this.port = process.env.PORT || '8000'
         //Inicializando rutas
 
-        this.donanteRoute = '/api/donante'
+        this.donanteRoute = '/api/visitas'
         this.proyectosRoute = '/api/proyectos'
         this.donacionesRoute = '/api/donaciones'
         this.api = '/'

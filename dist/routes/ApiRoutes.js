@@ -4,7 +4,7 @@ const express_1 = require("express");
 const router = (0, express_1.Router)();
 router.get('/', (req, res) => {
     res.json({
-        donanteRoute: '/api/donante',
+        donanteRoute: '/api/visitas',
         proyectosRoute: '/api/proyectos',
         donacionesRoute: '/api/donaciones',
     });

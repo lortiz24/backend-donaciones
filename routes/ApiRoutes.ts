@@ -9,7 +9,7 @@ const router = Router();
 
 router.get('/', (req, res) => {
     res.json({
-        donanteRoute:'/api/donante',
+        donanteRoute:'/api/visitas',
         proyectosRoute:'/api/proyectos',
         donacionesRoute:'/api/donaciones',
     })
