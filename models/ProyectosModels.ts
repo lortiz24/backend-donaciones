@@ -18,7 +18,7 @@ const Proyectos = Schema({
 
     },
     monto_meta: {
-        type: String,
+        type: Number,
     },
     monto_recaudado: {
         type: Number,

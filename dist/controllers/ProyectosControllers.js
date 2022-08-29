@@ -60,7 +60,7 @@ exports.createProyecto = createProyecto;
 const updateProyecto = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { id } = req.params;
-        const { descripcion, img, title, other, fecha_inicio, fecha_objetivo, monto_meta } = req.body;
+        const { descripcion, img, title, other, fecha_inicio, fecha_objetivo, monto_meta, monto_recaudado } = req.body;
         let updateProyect = {};
         if (descripcion !== undefined)
             updateProyect = Object.assign(Object.assign({}, updateProyect), { descripcion });
@@ -70,6 +70,14 @@ const updateProyecto = (req, res) => __awaiter(void 0, void 0, void 0, function*
             updateProyect = Object.assign(Object.assign({}, updateProyect), { title });
         if (other !== undefined)
             updateProyect = Object.assign(Object.assign({}, updateProyect), { other });
+        if (fecha_inicio !== undefined)
+            updateProyect = Object.assign(Object.assign({}, updateProyect), { fecha_inicio });
+        if (fecha_objetivo !== undefined)
+            updateProyect = Object.assign(Object.assign({}, updateProyect), { fecha_objetivo });
+        if (monto_meta !== undefined)
+            updateProyect = Object.assign(Object.assign({}, updateProyect), { monto_meta });
+        if (monto_recaudado !== undefined)
+            updateProyect = Object.assign(Object.assign({}, updateProyect), { monto_recaudado });
         console.log(updateProyect);
         //Actualizar en base de datos
         const proyecto = yield ProyectosModels_1.default.findByIdAndUpdate(id, updateProyect);

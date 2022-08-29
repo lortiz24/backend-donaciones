@@ -18,7 +18,7 @@ const Donaciones = Schema({
 
     },
     monto_donacion: {
-        type: String,
+        type: Number,
         required: [true, "monto_donacion es requerido"],
 
     },

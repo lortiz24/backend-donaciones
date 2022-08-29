@@ -8,7 +8,7 @@ export const getDonaciones = async (req: Request, res: Response) => {
         const Donaciones = await DonacionesModels.find({})
         res.status(200).send(Donaciones)
     } catch (error: any) {
-        res.json({error:error.message});
+        res.json({ error: error.message });
     }
 
 }
@@ -19,7 +19,7 @@ export const getDonacion = async (req: Request, res: Response) => {
         const Donacion = await DonacionesModels.findById(id)
         res.status(200).send(Donacion)
     } catch (error: any) {
-        res.json({error:error.message});
+        res.json({ error: error.message });
     }
 
 }
@@ -29,7 +29,9 @@ export const createDonacion = async (req: Request, res: Response) => {
         const Donacion = new DonacionesModels({ donante, proyecto, medio_pago, monto_donacion, nombre, tipo });
         //Guardar en base de datos
         await Donacion.save()
-
+        const protectoUp = await ProyectosModels.findById(proyecto)
+        console.log(protectoUp.monto_recaudado)
+        await ProyectosModels.findByIdAndUpdate(proyecto, { monto_recaudado: protectoUp.monto_recaudado + monto_donacion });
         res.status(201).send(Donacion)
     } catch (error: any) {
         console.log(error)
@@ -64,7 +66,7 @@ export const deleteDonacion = async (req: Request, res: Response) => {
         const Donacion = await DonacionesModels.findByIdAndDelete(id);
         res.send(Donacion)
     } catch (error: any) {
-        res.json({error:error.message});
+        res.json({ error: error.message });
     }
 
 

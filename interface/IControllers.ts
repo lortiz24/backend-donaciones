@@ -13,6 +13,7 @@ interface IRequestBodyProyectos {
     img?: string;
     monto_meta?: string;
     fecha_objetivo?: Date;
+    monto_recaudado: number;
 }
 interface IRequestBodyDonacion {
     proyecto: string;
