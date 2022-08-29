@@ -16,7 +16,6 @@ const express_1 = __importDefault(require("express"));
 const cors_1 = __importDefault(require("cors"));
 const config_1 = require("../db/config");
 const donantes_1 = __importDefault(require("../routes/donantes"));
-const MediosPagos_1 = __importDefault(require("../routes/MediosPagos"));
 const ProyectosRoutes_1 = __importDefault(require("../routes/ProyectosRoutes"));
 const DonacionesRoutes_1 = __importDefault(require("../routes/DonacionesRoutes"));
 class Server {
@@ -25,7 +24,6 @@ class Server {
         this.port = process.env.PORT || '8000';
         //Inicializando rutas
         this.donanteRoute = '/api/donante';
-        this.mediosPagosRoute = '/api/medios_pagos';
         this.proyectosRoute = '/api/proyectos';
         this.donacionesRoute = '/api/donaciones';
         //conection to DB
@@ -37,7 +35,6 @@ class Server {
     }
     routes() {
         this.app.use(this.donanteRoute, donantes_1.default);
-        this.app.use(this.mediosPagosRoute, MediosPagos_1.default);
         this.app.use(this.proyectosRoute, ProyectosRoutes_1.default);
         this.app.use(this.donacionesRoute, DonacionesRoutes_1.default);
     }

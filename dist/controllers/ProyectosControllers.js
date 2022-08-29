@@ -27,8 +27,12 @@ const getProyecto = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
 });
 exports.getProyecto = getProyecto;
 const createProyecto = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { descripcion, img, title, other } = req.body;
-    const proyecto = new ProyectosModels_1.default({ descripcion, title });
+    const { descripcion, img, title, other, fecha_inicio, fecha_objetivo, monto_meta } = req.body;
+    const proyecto = new ProyectosModels_1.default({ descripcion, title, fecha_inicio });
+    if (fecha_objetivo !== undefined)
+        proyecto.fecha_objetivo = fecha_objetivo;
+    if (monto_meta !== undefined)
+        proyecto.monto_meta = monto_meta;
     if (img !== undefined)
         proyecto.img = img;
     if (other !== undefined)
@@ -40,7 +44,7 @@ const createProyecto = (req, res) => __awaiter(void 0, void 0, void 0, function*
 exports.createProyecto = createProyecto;
 const updateProyecto = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { id } = req.params;
-    const { descripcion, img, title, other } = req.body;
+    const { descripcion, img, title, other, fecha_inicio, fecha_objetivo, monto_meta } = req.body;
     let updateProyect = {};
     if (descripcion !== undefined)
         updateProyect = Object.assign(Object.assign({}, updateProyect), { descripcion });

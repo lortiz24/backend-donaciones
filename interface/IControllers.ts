@@ -2,22 +2,17 @@ const { Schema, model } = require('mongoose')
 
 interface IRequestBodyDonantes {
     nombre: string;
-    montoDonacion: number,
-    tipo: string
-}
-
-interface IRequestBodyMediosPagos {
-    nombre: string;
+    monto_donacion: number,
     tipo: string
 }
 
 interface IRequestBodyProyectos {
-    img?: string;
     descripcion: string;
     title: string;
-    other?: string;
-    monto_meta?: string;
     fecha_inicio: Date;
+    other?: string;
+    img?: string;
+    monto_meta?: string;
     fecha_objetivo?: Date;
 }
 interface IRequestBodyDonacion {

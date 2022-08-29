@@ -27,12 +27,8 @@ const getDonacion = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
 });
 exports.getDonacion = getDonacion;
 const createDonacion = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { donante, proyecto, fecha_inicio, fecha_objetivo, monto_meta, medio_pago } = req.body;
-    const Donacion = new DonacionesModels_1.default({ donante, proyecto, fecha_inicio, medio_pago });
-    if (fecha_objetivo !== undefined)
-        Donacion.fecha_objetivo = fecha_objetivo;
-    if (monto_meta !== undefined)
-        Donacion.monto_meta = monto_meta;
+    const { donante, proyecto, medio_pago } = req.body;
+    const Donacion = new DonacionesModels_1.default({ donante, proyecto, medio_pago });
     //Guardar en base de datos
     yield Donacion.save();
     res.status(201).send(Donacion);
@@ -40,20 +36,14 @@ const createDonacion = (req, res) => __awaiter(void 0, void 0, void 0, function*
 exports.createDonacion = createDonacion;
 const updateDonacion = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { id } = req.params;
-    const { donante, proyecto, fecha_inicio, fecha_objetivo, monto_meta } = req.body;
-    let updateProyect = {};
+    const { donante, proyecto } = req.body;
+    let updateDonacion = {};
     if (donante !== undefined)
-        updateProyect = Object.assign(Object.assign({}, updateProyect), { donante });
+        updateDonacion = Object.assign(Object.assign({}, updateDonacion), { donante });
     if (proyecto !== undefined)
-        updateProyect = Object.assign(Object.assign({}, updateProyect), { proyecto });
-    if (fecha_inicio !== undefined)
-        updateProyect = Object.assign(Object.assign({}, updateProyect), { fecha_inicio });
-    if (fecha_objetivo !== undefined)
-        updateProyect = Object.assign(Object.assign({}, updateProyect), { fecha_objetivo });
-    if (monto_meta !== undefined)
-        updateProyect = Object.assign(Object.assign({}, updateProyect), { monto_meta });
+        updateDonacion = Object.assign(Object.assign({}, updateDonacion), { proyecto });
     //Actualizar en base de datos
-    const Donacion = yield DonacionesModels_1.default.findByIdAndUpdate(id, updateProyect);
+    const Donacion = yield DonacionesModels_1.default.findByIdAndUpdate(id, updateDonacion);
     res.status(201).send(Donacion);
 });
 exports.updateDonacion = updateDonacion;

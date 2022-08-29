@@ -24,22 +24,9 @@ const Donaciones = Schema({
         required: [true, "El id del donante es requerido"]
     },
     medio_pago: {
-        type: Schema.Types.ObjectId,
-        ref: "mediosPago",
-        required: [true, "El id de mediosPago  es requerido"]
-    },
-    monto_meta: {
         type: String,
-    },
-    monto_recaudado: {
-        type: Number,
-    },
-    fecha_inicio: {
-        type: Date,
-        required: [true, "La fecha de inicio es requerida"]
-    },
-    fecha_objetivo: {
-        type: Date,
+        required: [true, "El id de mediosPago  es requerido"],
+        enum: ['DEBITO', 'CREDITO']
     },
 });
 Donaciones.methods.toJSON = function () {

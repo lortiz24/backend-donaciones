@@ -24,6 +24,7 @@ const Proyectos = Schema({
     title: {
         type: String,
         default: 'none',
+        required: [true, "El tittle es requerido"],
     },
     monto_meta: {
         type: String,

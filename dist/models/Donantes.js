@@ -16,21 +16,15 @@ const Donantes = Schema({
     nombre: {
         type: String,
         default: 'donante Anonimo',
+        required: [true, "El nombre es requerido"],
     },
-    montoDonacion: {
+    monto_donacion: {
         type: Number,
         required: [true, "El monto es requerido"],
     },
     tipo: {
         type: String,
         required: [true, "El tipo es requerido"],
-    },
-    cantidad: {
-        type: Number,
-        required: [true, "La cantidad es requerida"],
-    },
-    direccion_ip: {
-        type: String,
     },
 });
 Donantes.methods.toJSON = function () {
