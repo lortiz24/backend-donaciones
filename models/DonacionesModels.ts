@@ -32,6 +32,9 @@ const Donaciones = Schema({
         required: [true, "tipo  es requerido"],
 
     },
+    fecha:{
+        type:Date,
+    }
 
 
 

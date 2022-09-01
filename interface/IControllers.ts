@@ -21,6 +21,6 @@ interface IRequestBodyDonacion {
     medio_pago: string;
     monto_donacion: number,
     nombre: string;
-    tipo: string
-
+    tipo: string,
+    fecha:Date
 }

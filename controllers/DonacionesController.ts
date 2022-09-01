@@ -1,4 +1,5 @@
 import { Response, Request } from 'express'
+import moment from 'moment'
 import DonacionesModels from '../models/DonacionesModels'
 import ProyectosModels from '../models/ProyectosModels'
 
@@ -25,8 +26,9 @@ export const getDonacion = async (req: Request, res: Response) => {
 }
 export const createDonacion = async (req: Request, res: Response) => {
     try {
+        const fecha = moment().format('YYYY-MM-DD HH:mm:ss');
         const { donante, proyecto, medio_pago, monto_donacion, nombre, tipo } = req.body as IRequestBodyDonacion;
-        const Donacion = new DonacionesModels({ donante, proyecto, medio_pago, monto_donacion, nombre, tipo });
+        const Donacion = new DonacionesModels({ donante, proyecto, medio_pago, monto_donacion, nombre, tipo, fecha });
         //Guardar en base de datos
         await Donacion.save()
         res.status(201).send(Donacion)
