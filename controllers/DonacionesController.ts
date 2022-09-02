@@ -28,7 +28,9 @@ export const createDonacion = async (req: Request, res: Response) => {
     try {
         const fecha = moment().format('YYYY-MM-DD HH:mm:ss');
         const { donante, proyecto, medio_pago, monto_donacion, nombre, tipo } = req.body as IRequestBodyDonacion;
-        const Donacion = new DonacionesModels({ donante, proyecto, medio_pago, monto_donacion, nombre, tipo, fecha });
+        const Donacion = new DonacionesModels({ donante, proyecto, medio_pago, monto_donacion, tipo, fecha });
+        
+        if(nombre.length !==0) Donacion.nombre=nombre
         //Guardar en base de datos
         await Donacion.save()
         res.status(201).send(Donacion)
