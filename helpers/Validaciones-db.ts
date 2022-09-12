@@ -15,7 +15,8 @@ export const existeDonacionById = async(id:string) => {
 }
 export const existeVisitaById = async(ip:string) => {
     const existeVisita=  await VisitasModels.find({ip:ip})
-    if (existeVisita) {
+    console.log(existeVisita);
+    if (existeVisita.length!==0) {
         return true
     }else{
         return false

@@ -30,7 +30,8 @@ const existeDonacionById = (id) => __awaiter(void 0, void 0, void 0, function* (
 exports.existeDonacionById = existeDonacionById;
 const existeVisitaById = (ip) => __awaiter(void 0, void 0, void 0, function* () {
     const existeVisita = yield VisitasModels_1.default.find({ ip: ip });
-    if (existeVisita) {
+    console.log(existeVisita);
+    if (existeVisita.length !== 0) {
         return true;
     }
     else {
