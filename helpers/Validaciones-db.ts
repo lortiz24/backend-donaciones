@@ -2,12 +2,21 @@ import DonacionesModels from "../models/DonacionesModels"
 import ContactosModels from "../models/ContactosModels"
 import ProyectosModels from "../models/ProyectosModels"
 import UsuariosModels from "../models/UsuariosModels"
+import VisitasModels from "../models/VisitasModels"
 
 
 export const existeDonacionById = async(id:string) => {
     const existeDonacion=  await  DonacionesModels.findById(id)
     if (!existeDonacion) {
         throw new Error(`No existe una donacion con id: ${id} `)
+    }else{
+        return true
+    }
+}
+export const existeVisitaById = async(id:string) => {
+    const existeVisita=  await  VisitasModels.findById(id)
+    if (existeVisita) {
+        throw new Error(`Ya existe una donacion con id: ${id} `)
     }else{
         return true
     }
