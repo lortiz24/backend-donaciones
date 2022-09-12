@@ -13,11 +13,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getCantidadProyectos = void 0;
-const ProyectosModels_1 = __importDefault(require("../models/ProyectosModels"));
+const DonacionesModels_1 = __importDefault(require("../models/DonacionesModels"));
+const mongoose = require('mongoose');
 const getCantidadProyectos = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { proyecto_id } = req.params;
     try {
-        const proyectos = yield ProyectosModels_1.default.find({});
-        res.status(200).send(proyectos);
+        const donaciones = yield DonacionesModels_1.default.find({ proyecto: mongoose.Types.ObjectId(proyecto_id) });
+        res.status(200).json({ cantidad: donaciones.length });
     }
     catch (error) {
         res.json({ error: error.message });
