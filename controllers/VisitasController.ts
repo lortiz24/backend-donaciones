@@ -1,5 +1,6 @@
 import { Response, Request } from 'express'
 import moment from 'moment'
+import { existeVisitaById } from '../helpers/Validaciones-db'
 import VisitasModels from '../models/VisitasModels'
 
 
@@ -17,6 +18,9 @@ export const createVisita = async (req: Request, res: Response) => {
 
     try {
         const ip = req.ip;
+        if (await existeVisitaById(ip)) {
+            return res.status(500).send({ error: "ip existente" })
+        }
         const { fecha = moment().format('YYYY-MM-DD ') } = req.body as IRequestBodyVisita;
         const Visita = new VisitasModels({ fecha, ip });
         //Guardar en base de datos

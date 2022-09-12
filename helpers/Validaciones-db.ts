@@ -13,12 +13,12 @@ export const existeDonacionById = async(id:string) => {
         return true
     }
 }
-export const existeVisitaById = async(id:string) => {
-    const existeVisita=  await  VisitasModels.findById(id)
+export const existeVisitaById = async(ip:string) => {
+    const existeVisita=  await VisitasModels.find({ip:ip})
     if (existeVisita) {
-        throw new Error(`Ya existe una donacion con id: ${id} `)
-    }else{
         return true
+    }else{
+        return false
     }
 }
 export const existUsuarioById = async(id:string) => {

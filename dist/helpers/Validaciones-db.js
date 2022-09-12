@@ -28,13 +28,13 @@ const existeDonacionById = (id) => __awaiter(void 0, void 0, void 0, function* (
     }
 });
 exports.existeDonacionById = existeDonacionById;
-const existeVisitaById = (id) => __awaiter(void 0, void 0, void 0, function* () {
-    const existeVisita = yield VisitasModels_1.default.findById(id);
+const existeVisitaById = (ip) => __awaiter(void 0, void 0, void 0, function* () {
+    const existeVisita = yield VisitasModels_1.default.find({ ip: ip });
     if (existeVisita) {
-        throw new Error(`Ya existe una donacion con id: ${id} `);
+        return true;
     }
     else {
-        return true;
+        return false;
     }
 });
 exports.existeVisitaById = existeVisitaById;

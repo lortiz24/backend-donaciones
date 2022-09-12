@@ -8,7 +8,7 @@ import { existeProyectoById, existeVisitaById } from "../helpers/Validaciones-db
 const router = Router();
 
 router.get('/', getVisitas);
-router.post('/',[check("ip").custom(existeVisitaById), validarCampos], createVisita);
+router.post('/', createVisita);
 
 
 
