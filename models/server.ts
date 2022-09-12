@@ -3,32 +3,33 @@ import cors from 'cors'
 
 import { dbConnection } from '../db/config';
 
-import donanteRouter from '../routes/donantes';
+import usuarioRoutes from '../routes/UsuarioRoutes';
 import proyectosRoutes from '../routes/ProyectosRoutes';
 import donacionesRoutes from '../routes/DonacionesRoutes';
 import apiRoutes from '../routes/ApiRoutes';
 import contacctosRoutes from '../routes/ContactosRoutes';
+import reportesRoutes from '../routes/ReportesRoutes';
 
 class Server {
     private app: Application
     private port: string
-    // private userRoute: string
-    // private reservacionesRoute: string
-    // private authRoute: string
-    private donanteRoute: string
+    private usuarioRoute: string
     private proyectosRoute: string
     private donacionesRoute: string
     private api: string
     private contactosRoute: string
+    private reportesRoute: string
+
     constructor() {
         this.app = express();
         this.port = process.env.PORT || '8000'
         //Inicializando rutas
 
-        this.donanteRoute = '/api/visitas'
+        this.usuarioRoute = '/api/usuarios'
         this.proyectosRoute = '/api/proyectos'
         this.donacionesRoute = '/api/donaciones'
         this.contactosRoute = '/api/contactos'
+        this.reportesRoute = '/api/reportes'
         this.api = '/'
         //conection to DB
         this.dbConnection()
@@ -40,10 +41,11 @@ class Server {
     }
 
     routes() {
-        this.app.use(this.donanteRoute, donanteRouter)
+        this.app.use(this.usuarioRoute, usuarioRoutes)
         this.app.use(this.proyectosRoute, proyectosRoutes)
         this.app.use(this.donacionesRoute, donacionesRoutes)
         this.app.use(this.contactosRoute, contacctosRoutes)
+        this.app.use(this.reportesRoute, reportesRoutes)
         this.app.use(this.api, apiRoutes)
     }
 

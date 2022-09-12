@@ -15,20 +15,22 @@ Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = __importDefault(require("express"));
 const cors_1 = __importDefault(require("cors"));
 const config_1 = require("../db/config");
-const donantes_1 = __importDefault(require("../routes/donantes"));
+const UsuarioRoutes_1 = __importDefault(require("../routes/UsuarioRoutes"));
 const ProyectosRoutes_1 = __importDefault(require("../routes/ProyectosRoutes"));
 const DonacionesRoutes_1 = __importDefault(require("../routes/DonacionesRoutes"));
 const ApiRoutes_1 = __importDefault(require("../routes/ApiRoutes"));
 const ContactosRoutes_1 = __importDefault(require("../routes/ContactosRoutes"));
+const ReportesRoutes_1 = __importDefault(require("../routes/ReportesRoutes"));
 class Server {
     constructor() {
         this.app = (0, express_1.default)();
         this.port = process.env.PORT || '8000';
         //Inicializando rutas
-        this.donanteRoute = '/api/visitas';
+        this.usuarioRoute = '/api/usuarios';
         this.proyectosRoute = '/api/proyectos';
         this.donacionesRoute = '/api/donaciones';
         this.contactosRoute = '/api/contactos';
+        this.reportesRoute = '/api/reportes';
         this.api = '/';
         //conection to DB
         this.dbConnection();
@@ -38,10 +40,11 @@ class Server {
         this.routes();
     }
     routes() {
-        this.app.use(this.donanteRoute, donantes_1.default);
+        this.app.use(this.usuarioRoute, UsuarioRoutes_1.default);
         this.app.use(this.proyectosRoute, ProyectosRoutes_1.default);
         this.app.use(this.donacionesRoute, DonacionesRoutes_1.default);
         this.app.use(this.contactosRoute, ContactosRoutes_1.default);
+        this.app.use(this.reportesRoute, ReportesRoutes_1.default);
         this.app.use(this.api, ApiRoutes_1.default);
     }
     middlewares() {

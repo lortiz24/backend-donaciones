@@ -14,10 +14,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.deleteDonantes = exports.updateDonantes = exports.createDonantes = exports.getDonante = exports.getDonantes = void 0;
 const mongoose_1 = require("mongoose");
-const Donantes_1 = __importDefault(require("../models/Donantes"));
+const UsuariosModels_1 = __importDefault(require("../models/UsuariosModels"));
 const getDonantes = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const donantes = yield Donantes_1.default.find({});
+        const donantes = yield UsuariosModels_1.default.find({});
         res.send(donantes);
     }
     catch (error) {
@@ -28,7 +28,7 @@ exports.getDonantes = getDonantes;
 const getDonante = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { id } = req.params;
-        const donantes = yield Donantes_1.default.findById(id);
+        const donantes = yield UsuariosModels_1.default.findById(id);
         res.send(donantes);
     }
     catch (error) {
@@ -39,7 +39,7 @@ exports.getDonante = getDonante;
 const createDonantes = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { ip } = req.body;
-        const donante = new Donantes_1.default({ ip });
+        const donante = new UsuariosModels_1.default({ ip });
         //Guardar en base de datos
         yield donante.save();
         res.send(donante);
@@ -53,7 +53,7 @@ const updateDonantes = (req, res) => __awaiter(void 0, void 0, void 0, function*
     const { id } = req.params;
     const { ip } = req.body;
     //Actualizar en base de datos
-    const donante = yield Donantes_1.default.findByIdAndUpdate(new mongoose_1.mongo.ObjectId(id), { ip });
+    const donante = yield UsuariosModels_1.default.findByIdAndUpdate(new mongoose_1.mongo.ObjectId(id), { ip });
     res.send(donante);
 });
 exports.updateDonantes = updateDonantes;
@@ -61,7 +61,7 @@ const deleteDonantes = (req, res) => __awaiter(void 0, void 0, void 0, function*
     try {
         const { id } = req.params;
         //Efectuar eliminacion
-        const donante = yield Donantes_1.default.findByIdAndDelete(id);
+        const donante = yield UsuariosModels_1.default.findByIdAndDelete(id);
         res.json({ donante });
     }
     catch (error) {

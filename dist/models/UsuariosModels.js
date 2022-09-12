@@ -32,4 +32,4 @@ Usuario.methods.toJSON = function () {
     return usuario;
 };
 exports.default = model('usuario', Usuario);
-//# sourceMappingURL=Donantes.js.map
+//# sourceMappingURL=UsuariosModels.js.map

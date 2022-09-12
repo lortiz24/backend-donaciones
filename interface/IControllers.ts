@@ -1,7 +1,9 @@
 const { Schema, model } = require('mongoose')
 
-interface IRequestBodyDonantes {
-    ip: string;
+interface IRequestBodyUsuarios {
+    nombre: string;
+    email: string;
+    tipo: string;
 
 }
 
