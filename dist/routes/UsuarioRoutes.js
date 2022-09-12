@@ -7,6 +7,7 @@ const Validaciones_db_1 = require("../helpers/Validaciones-db");
 const validarCampos_1 = require("../middlewares/validarCampos");
 const router = (0, express_1.Router)();
 router.get('/', UsuarioControllers_1.getUsuarios);
+router.get('/admin', UsuarioControllers_1.getUsuariosAdmin);
 router.get('/:id', UsuarioControllers_1.getUsuario);
 router.post("/", [
     (0, express_validator_1.check)('email', 'email es obligatorio').not().isEmpty(),

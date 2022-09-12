@@ -17,6 +17,15 @@ const Usuario = Schema({
         enum: ['ADMIN_ROLE', 'USER_ROLE']
 
     },
+    img:{
+        type: String,
+    },
+    descripcion:{
+        type: String,
+    },
+    puesto:{
+        type: String,
+    }
     
 })
 Usuario.methods.toJSON = function(){

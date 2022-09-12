@@ -14,6 +14,15 @@ export const getUsuarios = async (req: Request, res: Response) => {
     }
 
 }
+export const getUsuariosAdmin = async (req: Request, res: Response) => {
+    try {
+        const usuarios = await Usuarios.find({tipo:"ADMIN_ROLE"})
+        res.send(usuarios)
+    } catch (error: any) {
+        res.json({ error: error.message });
+    }
+
+}
 
 
 export const getUsuario = async (req: Request, res: Response) => {
@@ -31,9 +40,18 @@ export const getUsuario = async (req: Request, res: Response) => {
 export const createUsuario = async (req: Request, res: Response) => {
     try {
 
-        const { email, nombre, tipo } = req.body as IRequestBodyUsuarios;
-        const usuario = new Usuarios({ email, nombre, tipo });
-
+        const { email, nombre, tipo, descripcion, img, puesto } = req.body as IRequestBodyUsuarios;
+        let newUsuario = {}
+        newUsuario = {
+            ...newUsuario,
+            email,
+            nombre,
+            tipo
+        }
+        if (descripcion !== undefined) newUsuario = { ...newUsuario, descripcion }
+        if (img !== undefined) newUsuario = { ...newUsuario, img }
+        if (puesto !== undefined) newUsuario = { ...newUsuario, puesto }
+        const usuario = new Usuarios(newUsuario);
         //Guardar en base de datos
         await usuario.save()
         res.send(usuario)
@@ -45,11 +63,14 @@ export const createUsuario = async (req: Request, res: Response) => {
 
 export const updateUsuario = async (req: Request, res: Response) => {
     const { id } = req.params;
-    const { email, nombre, tipo } = req.body as IRequestBodyUsuarios;
+    const { email, nombre, tipo, descripcion, img, puesto } = req.body as IRequestBodyUsuarios;
     let updateUsuario = {}
     if (email !== undefined) updateUsuario = { ...updateUsuario, email }
     if (nombre !== undefined) updateUsuario = { ...updateUsuario, nombre }
     if (tipo !== undefined) updateUsuario = { ...updateUsuario, tipo }
+    if (descripcion !== undefined) updateUsuario = { ...updateUsuario, descripcion }
+    if (img !== undefined) updateUsuario = { ...updateUsuario, img }
+    if (puesto !== undefined) updateUsuario = { ...updateUsuario, puesto }
     //Actualizar en base de datos
     const usuario = await Usuarios.findByIdAndUpdate(id, updateUsuario);
     res.send(usuario);

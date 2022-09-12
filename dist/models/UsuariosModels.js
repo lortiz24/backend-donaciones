@@ -25,6 +25,15 @@ const Usuario = Schema({
         required: [true, "tipo es requerido"],
         enum: ['ADMIN_ROLE', 'USER_ROLE']
     },
+    img: {
+        type: String,
+    },
+    descripcion: {
+        type: String,
+    },
+    puesto: {
+        type: String,
+    }
 });
 Usuario.methods.toJSON = function () {
     const _a = this.toObject(), { __v, _id } = _a, usuario = __rest(_a, ["__v", "_id"]);

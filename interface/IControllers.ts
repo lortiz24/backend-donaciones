@@ -4,6 +4,9 @@ interface IRequestBodyUsuarios {
     nombre: string;
     email: string;
     tipo: string;
+    img: string;
+    descripcion: string;
+    puesto: string;
 
 }
 

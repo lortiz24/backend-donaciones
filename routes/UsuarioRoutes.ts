@@ -1,6 +1,6 @@
 import { Router } from "express";
 import { check } from "express-validator";
-import { createUsuario, deleteUsuario, getUsuario, getUsuarios, updateUsuario } from "../controllers/UsuarioControllers";
+import { createUsuario, deleteUsuario, getUsuario, getUsuarios, getUsuariosAdmin, updateUsuario } from "../controllers/UsuarioControllers";
 import { existUsuarioById } from "../helpers/Validaciones-db";
 import { validarCampos } from "../middlewares/validarCampos";
 
@@ -9,6 +9,7 @@ import { validarCampos } from "../middlewares/validarCampos";
 const router = Router();
 
 router.get('/', getUsuarios);
+router.get('/admin', getUsuariosAdmin);
 router.get('/:id', getUsuario);
 
 router.post(
