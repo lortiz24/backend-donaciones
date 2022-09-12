@@ -39,6 +39,9 @@ const Donaciones = Schema({
         type: String,
         required: [true, "tipo  es requerido"],
     },
+    fecha: {
+        type: Date,
+    }
 });
 Donaciones.methods.toJSON = function () {
     const _a = this.toObject(), { __v, _id } = _a, donante = __rest(_a, ["__v", "_id"]);

@@ -13,6 +13,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.deleteDonacion = exports.updateDonacion = exports.createDonacion = exports.getDonacion = exports.getDonaciones = void 0;
+const moment_1 = __importDefault(require("moment"));
 const DonacionesModels_1 = __importDefault(require("../models/DonacionesModels"));
 const getDonaciones = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
@@ -37,8 +38,11 @@ const getDonacion = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
 exports.getDonacion = getDonacion;
 const createDonacion = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
+        const fecha = (0, moment_1.default)().format('YYYY-MM-DD HH:mm:ss');
         const { donante, proyecto, medio_pago, monto_donacion, nombre, tipo } = req.body;
-        const Donacion = new DonacionesModels_1.default({ donante, proyecto, medio_pago, monto_donacion, nombre, tipo });
+        const Donacion = new DonacionesModels_1.default({ donante, proyecto, medio_pago, monto_donacion, tipo, fecha });
+        if (nombre.length !== 0)
+            Donacion.nombre = nombre;
         //Guardar en base de datos
         yield Donacion.save();
         res.status(201).send(Donacion);
