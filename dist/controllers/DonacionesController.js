@@ -27,7 +27,6 @@ exports.getDonaciones = getDonaciones;
 const getDonacion = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
         const { id } = req.params;
-        console.log(id);
         const Donacion = yield DonacionesModels_1.default.findById(id);
         res.status(200).send(Donacion);
     }

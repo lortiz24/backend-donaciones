@@ -24,3 +24,10 @@ interface IRequestBodyDonacion {
     tipo: string
 
 }
+interface IRequestBodyContacto {
+    name: string;
+    email: string;
+    message: string;
+ 
+
+}

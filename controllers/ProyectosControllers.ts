@@ -14,7 +14,6 @@ export const getProyectos = async (req: Request, res: Response) => {
 export const getProyecto = async (req: Request, res: Response) => {
     try {
         const { id } = req.params
-        console.log(id)
         const proyecto = await Proyectos.findById(id)
         res.status(200).send(proyecto)
     } catch (error: any) {

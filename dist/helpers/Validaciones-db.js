@@ -12,8 +12,9 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.existeDonanteById = exports.existeProyectoById = exports.existeDonacionById = void 0;
+exports.existeDonanteById = exports.existeProyectoById = exports.existeContactoById = exports.existeDonacionById = void 0;
 const DonacionesModels_1 = __importDefault(require("../models/DonacionesModels"));
+const ContactosModels_1 = __importDefault(require("../models/ContactosModels"));
 const ProyectosModels_1 = __importDefault(require("../models/ProyectosModels"));
 const Donantes_1 = __importDefault(require("../models/Donantes"));
 const existeDonacionById = (id) => __awaiter(void 0, void 0, void 0, function* () {
@@ -26,6 +27,16 @@ const existeDonacionById = (id) => __awaiter(void 0, void 0, void 0, function* (
     }
 });
 exports.existeDonacionById = existeDonacionById;
+const existeContactoById = (id) => __awaiter(void 0, void 0, void 0, function* () {
+    const existeContacto = ContactosModels_1.default.findById(id);
+    if (!existeContacto) {
+        throw new Error(`No existe un contacto con id: ${id} `);
+    }
+    else {
+        return true;
+    }
+});
+exports.existeContactoById = existeContactoById;
 const existeProyectoById = (id) => __awaiter(void 0, void 0, void 0, function* () {
     const existeProyectos = ProyectosModels_1.default.findById(id);
     if (!existeProyectos) {

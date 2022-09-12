@@ -15,7 +15,6 @@ export const getDonaciones = async (req: Request, res: Response) => {
 export const getDonacion = async (req: Request, res: Response) => {
     try {
         const { id } = req.params
-        console.log(id)
         const Donacion = await DonacionesModels.findById(id)
         res.status(200).send(Donacion)
     } catch (error: any) {
