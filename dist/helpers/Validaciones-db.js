@@ -29,8 +29,6 @@ const existeDonacionById = (id) => __awaiter(void 0, void 0, void 0, function* (
 exports.existeDonacionById = existeDonacionById;
 const existUsuarioById = (id) => __awaiter(void 0, void 0, void 0, function* () {
     const existeUsuario = yield UsuariosModels_1.default.findById(id);
-    console.log(id);
-    console.log(existeUsuario);
     if (!existeUsuario) {
         throw new Error(`No existe un usuario con id: ${id} `);
     }

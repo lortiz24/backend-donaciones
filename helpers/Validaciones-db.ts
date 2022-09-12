@@ -14,8 +14,6 @@ export const existeDonacionById = async(id:string) => {
 }
 export const existUsuarioById = async(id:string) => {
     const existeUsuario= await UsuariosModels.findById(id)
-    console.log(id);
-    console.log(existeUsuario);
     if (!existeUsuario) {
         throw new Error(`No existe un usuario con id: ${id} `)
     }else{

@@ -25,12 +25,20 @@ router.get('/', (req, res) => {
             delete: "/api/proyectos/:idProyecto",
 
         },
-        usuarioRoute: {
+        usuariosRoute: {
             getDonaciones: "/api/usuarios",
             getDonacion: "/api/usuarios:idUsuario",
             post: "/api/usuarios",
             put: "/api/usuarios/:idUsuario",
             delete: "/api/usuarios:idUsuario",
+
+        },
+        contactosRoute: {
+            getDonaciones: "/api/contactos",
+            getDonacion: "/api/contactos/:idUsuario",
+            post: "/api/contactos",
+            put: "/api/contactos/:idUsuario",
+            delete: "/api/contactos/:idUsuario",
 
         },
         reportes: {
