@@ -31,6 +31,10 @@ interface IRequestBodyContacto {
     name: string;
     email: string;
     message: string;
- 
+
+}
+interface IRequestBodyVisita {
+    ip: string;
+    fecha: string;
 
 }

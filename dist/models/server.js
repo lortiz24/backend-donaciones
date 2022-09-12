@@ -21,6 +21,7 @@ const DonacionesRoutes_1 = __importDefault(require("../routes/DonacionesRoutes")
 const ApiRoutes_1 = __importDefault(require("../routes/ApiRoutes"));
 const ContactosRoutes_1 = __importDefault(require("../routes/ContactosRoutes"));
 const ReportesRoutes_1 = __importDefault(require("../routes/ReportesRoutes"));
+const VisitasRoutes_1 = __importDefault(require("../routes/VisitasRoutes"));
 class Server {
     constructor() {
         this.app = (0, express_1.default)();
@@ -31,6 +32,7 @@ class Server {
         this.donacionesRoute = '/api/donaciones';
         this.contactosRoute = '/api/contactos';
         this.reportesRoute = '/api/reportes';
+        this.visitasRoute = '/api/visitas';
         this.api = '/';
         //conection to DB
         this.dbConnection();
@@ -45,6 +47,7 @@ class Server {
         this.app.use(this.donacionesRoute, DonacionesRoutes_1.default);
         this.app.use(this.contactosRoute, ContactosRoutes_1.default);
         this.app.use(this.reportesRoute, ReportesRoutes_1.default);
+        this.app.use(this.visitasRoute, VisitasRoutes_1.default);
         this.app.use(this.api, ApiRoutes_1.default);
     }
     middlewares() {
