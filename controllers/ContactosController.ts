@@ -24,8 +24,8 @@ export const getContacto = async (req: Request, res: Response) => {
 }
 export const createContacto = async (req: Request, res: Response) => {
     try {
-        const { email,message,name} = req.body as IRequestBodyContacto;
-        const Donacion = new ContactoModels({ email,message,name });
+        const { email,message,name,asunto} = req.body as IRequestBodyContacto;
+        const Donacion = new ContactoModels({ email,message,name ,asunto});
         //Guardar en base de datos
         await Donacion.save()
         res.status(201).send(Donacion)

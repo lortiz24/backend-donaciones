@@ -37,8 +37,8 @@ const getContacto = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
 exports.getContacto = getContacto;
 const createContacto = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const { email, message, name } = req.body;
-        const Donacion = new ContactosModels_1.default({ email, message, name });
+        const { email, message, name, asunto } = req.body;
+        const Donacion = new ContactosModels_1.default({ email, message, name, asunto });
         //Guardar en base de datos
         yield Donacion.save();
         res.status(201).send(Donacion);

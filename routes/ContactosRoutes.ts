@@ -21,6 +21,7 @@ router.post(
         check('name', 'El name es requerido').not().isEmpty(),
         check('email', 'El email es requerido').not().isEmpty(),
         check('message', 'El message es obligatorio').not().isEmpty(),
+        check('asunto', 'El message es obligatorio').not().isEmpty(),
         validarCampos
     ],
     createContacto

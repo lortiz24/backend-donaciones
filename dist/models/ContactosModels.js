@@ -22,6 +22,10 @@ const Contactos = Schema({
         type: String,
         required: [true, "El email es requerido"],
     },
+    asunto: {
+        type: String,
+        required: [true, "El message es requerido"],
+    },
     message: {
         type: String,
         required: [true, "El message es requerido"],

@@ -15,6 +15,7 @@ router.post("/", [
     (0, express_validator_1.check)('name', 'El name es requerido').not().isEmpty(),
     (0, express_validator_1.check)('email', 'El email es requerido').not().isEmpty(),
     (0, express_validator_1.check)('message', 'El message es obligatorio').not().isEmpty(),
+    (0, express_validator_1.check)('asunto', 'El message es obligatorio').not().isEmpty(),
     validarCampos_1.validarCampos
 ], ContactosController_1.createContacto);
 router.put('/:id', [
