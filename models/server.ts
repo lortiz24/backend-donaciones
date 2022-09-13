@@ -56,6 +56,7 @@ class Server {
     middlewares() {
         this.app.use(express.json())
         this.app.use(cors())
+        this.app.set('trust proxy', true);
     }
 
     async dbConnection() {

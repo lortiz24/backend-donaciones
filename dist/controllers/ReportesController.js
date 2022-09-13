@@ -12,8 +12,10 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getCantidadProyectos = void 0;
+exports.getMetricasProyectos = exports.getCantidadProyectos = void 0;
+const moment_1 = __importDefault(require("moment"));
 const DonacionesModels_1 = __importDefault(require("../models/DonacionesModels"));
+const ProyectosModels_1 = __importDefault(require("../models/ProyectosModels"));
 const mongoose = require('mongoose');
 const getCantidadProyectos = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { proyecto_id } = req.params;
@@ -26,4 +28,23 @@ const getCantidadProyectos = (req, res) => __awaiter(void 0, void 0, void 0, fun
     }
 });
 exports.getCantidadProyectos = getCantidadProyectos;
+const getMetricasProyectos = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { proyecto_id } = req.params;
+    try {
+        const donaciones = yield DonacionesModels_1.default.find({ proyecto: mongoose.Types.ObjectId(proyecto_id) });
+        const proyectos = yield ProyectosModels_1.default.findById(proyecto_id);
+        let mongoAlcanzado = 0;
+        donaciones.forEach((element) => {
+            mongoAlcanzado += element.monto_donacion;
+        });
+        const inicio = (0, moment_1.default)(proyectos.fecha_inicio);
+        const final = (0, moment_1.default)(proyectos.fecha_objetivo);
+        const diasFaltantes = final.diff(inicio, "days");
+        res.status(200).json({ mongoAlcanzado, diasFaltantes, monto_meta: proyectos.monto_meta });
+    }
+    catch (error) {
+        res.json({ error: error.message });
+    }
+});
+exports.getMetricasProyectos = getMetricasProyectos;
 //# sourceMappingURL=ReportesController.js.map

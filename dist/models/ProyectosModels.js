@@ -36,6 +36,9 @@ const Proyectos = Schema({
     fecha_objetivo: {
         type: Date,
     },
+    dias: {
+        type: Number,
+    },
     other: {
         type: JSON,
     },

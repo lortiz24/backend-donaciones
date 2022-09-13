@@ -38,7 +38,6 @@ interface IRequestBodyContacto {
 
 }
 interface IRequestBodyVisita {
-    ip: string;
     fecha: string;
 
 }

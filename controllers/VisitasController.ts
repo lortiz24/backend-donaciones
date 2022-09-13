@@ -16,20 +16,21 @@ export const getVisitas = async (req: Request, res: Response) => {
 
 export const createVisita = async (req: Request, res: Response) => {
 
-    try {
-        const ip = req.ip;
-        if (await existeVisitaById(ip)) {
-            return res.status(500).send({ error: "ip existente" })
-        }
-        const { fecha = moment().format('YYYY-MM-DD ') } = req.body as IRequestBodyVisita;
-        const Visita = new VisitasModels({ fecha, ip });
-        //Guardar en base de datos
-        await Visita.save()
-        res.status(201).send(Visita)
-    } catch (error: any) {
-        console.log(error)
-        res.status(500).json({ error: error.message });
-    }
+    const ip = req.ip;
+
+     try {
+         if (await existeVisitaById(ip)) {
+             return res.status(500).send({ error: "ip existente" })
+         }
+         const { fecha = moment().format('YYYY-MM-DD ') } = req.body as IRequestBodyVisita;
+         const Visita = new VisitasModels({ fecha, ip });
+         //Guardar en base de datos
+         await Visita.save()
+         res.status(201).send(Visita)
+     } catch (error: any) {
+         console.log(error)
+         res.status(500).json({ error: error.message });
+     }
 
 }
 

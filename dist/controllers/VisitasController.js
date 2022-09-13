@@ -27,8 +27,8 @@ const getVisitas = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
 });
 exports.getVisitas = getVisitas;
 const createVisita = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const ip = req.ip;
     try {
-        const ip = req.ip;
         if (yield (0, Validaciones_db_1.existeVisitaById)(ip)) {
             return res.status(500).send({ error: "ip existente" });
         }
