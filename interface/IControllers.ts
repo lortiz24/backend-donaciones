@@ -35,7 +35,11 @@ interface IRequestBodyContacto {
     email: string;
     message: string;
     asunto: string;
-
+}
+interface IRequestBodyObjeto {
+    tipo: string;
+    objeto: JSON;
+    descripcion: string;
 }
 interface IRequestBodyVisita {
     fecha: string;

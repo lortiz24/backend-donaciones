@@ -3,12 +3,21 @@ import ContactosModels from "../models/ContactosModels"
 import ProyectosModels from "../models/ProyectosModels"
 import UsuariosModels from "../models/UsuariosModels"
 import VisitasModels from "../models/VisitasModels"
+import ObjetosVariosModels from "../models/ObjetosVariosModels"
 
 
 export const existeDonacionById = async(id:string) => {
     const existeDonacion=  await  DonacionesModels.findById(id)
     if (!existeDonacion) {
         throw new Error(`No existe una donacion con id: ${id} `)
+    }else{
+        return true
+    }
+}
+export const existeObjetoById = async(id:string) => {
+    const existeObjeto=  await ObjetosVariosModels.findById(id)
+    if (!existeObjeto) {
+        throw new Error(`No existe un objeto con id: ${id} `)
     }else{
         return true
     }

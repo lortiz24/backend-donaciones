@@ -12,12 +12,13 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.existeProyectoById = exports.existeContactoById = exports.existUsuarioById = exports.existeVisitaById = exports.existeDonacionById = void 0;
+exports.existeProyectoById = exports.existeContactoById = exports.existUsuarioById = exports.existeVisitaById = exports.existeObjetoById = exports.existeDonacionById = void 0;
 const DonacionesModels_1 = __importDefault(require("../models/DonacionesModels"));
 const ContactosModels_1 = __importDefault(require("../models/ContactosModels"));
 const ProyectosModels_1 = __importDefault(require("../models/ProyectosModels"));
 const UsuariosModels_1 = __importDefault(require("../models/UsuariosModels"));
 const VisitasModels_1 = __importDefault(require("../models/VisitasModels"));
+const ObjetosVariosModels_1 = __importDefault(require("../models/ObjetosVariosModels"));
 const existeDonacionById = (id) => __awaiter(void 0, void 0, void 0, function* () {
     const existeDonacion = yield DonacionesModels_1.default.findById(id);
     if (!existeDonacion) {
@@ -28,6 +29,16 @@ const existeDonacionById = (id) => __awaiter(void 0, void 0, void 0, function* (
     }
 });
 exports.existeDonacionById = existeDonacionById;
+const existeObjetoById = (id) => __awaiter(void 0, void 0, void 0, function* () {
+    const existeObjeto = yield ObjetosVariosModels_1.default.findById(id);
+    if (!existeObjeto) {
+        throw new Error(`No existe un objeto con id: ${id} `);
+    }
+    else {
+        return true;
+    }
+});
+exports.existeObjetoById = existeObjetoById;
 const existeVisitaById = (ip) => __awaiter(void 0, void 0, void 0, function* () {
     const existeVisita = yield VisitasModels_1.default.find({ ip: ip });
     console.log(existeVisita);

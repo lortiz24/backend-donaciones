@@ -33,7 +33,12 @@ router.get('/', (req, res) => {
             delete: "/api/contactos/:idUsuario",
         },
         reportes: {
-            candidadDonacionesByProyecto: "/cantidad_donaciones/:proyecto_id"
+            candidadDonacionesByProyecto: "/cantidad_donaciones/:proyecto_id",
+            metricasByProyecto: "/metricas/:proyecto_id"
+        },
+        visitas: {
+            get: "/",
+            post: "/"
         }
     });
 });

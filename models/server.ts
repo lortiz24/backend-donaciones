@@ -10,6 +10,7 @@ import apiRoutes from '../routes/ApiRoutes';
 import contacctosRoutes from '../routes/ContactosRoutes';
 import reportesRoutes from '../routes/ReportesRoutes';
 import visitasRoutes from '../routes/VisitasRoutes';
+import objetosVariosRoutes from '../routes/ObjetosVariosRoutes';
 
 class Server {
     private app: Application
@@ -21,6 +22,7 @@ class Server {
     private contactosRoute: string
     private reportesRoute: string
     private visitasRoute: string
+    private objetoVarioRoute: string
 
     constructor() {
         this.app = express();
@@ -33,6 +35,7 @@ class Server {
         this.contactosRoute = '/api/contactos'
         this.reportesRoute = '/api/reportes'
         this.visitasRoute = '/api/visitas'
+        this.objetoVarioRoute = '/api/objetosvarios'
         this.api = '/'
         //conection to DB
         this.dbConnection()
@@ -51,6 +54,7 @@ class Server {
         this.app.use(this.reportesRoute, reportesRoutes)
         this.app.use(this.visitasRoute, visitasRoutes)
         this.app.use(this.api, apiRoutes)
+        this.app.use(this.objetoVarioRoute, objetosVariosRoutes)
     }
 
     middlewares() {
