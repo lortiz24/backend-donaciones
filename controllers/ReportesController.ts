@@ -25,8 +25,9 @@ export const getMetricasProyectos = async (req: Request, res: Response) => {
         });
         const inicio = moment(proyectos.fecha_inicio);
         const final = moment(proyectos.fecha_objetivo);
-        const diasFaltantes=final.diff(inicio,"days")
-        res.status(200).json({ mongoAlcanzado,diasFaltantes,monto_meta:proyectos.monto_meta })
+        const diasFaltantes = final.diff(inicio, "days")
+        const procentajeAlcanzado = ((mongoAlcanzado / proyectos.monto_meta) * 100).toFixed()
+        res.status(200).json({ mongoAlcanzado, diasFaltantes, monto_meta: proyectos.monto_meta, procentajeAlcanzado })
     } catch (error: any) {
         res.json({ error: error.message });
     }
