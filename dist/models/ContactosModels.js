@@ -24,7 +24,6 @@ const Contactos = Schema({
     },
     asunto: {
         type: String,
-        required: [true, "El message es requerido"],
     },
     message: {
         type: String,
