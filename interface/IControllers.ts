@@ -7,6 +7,7 @@ interface IRequestBodyUsuarios {
     img: string;
     descripcion: string;
     puesto: string;
+    other: JSON
 
 }
 

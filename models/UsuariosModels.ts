@@ -8,7 +8,7 @@ const Usuario = Schema({
     email: {
         type: String,
         required: [true, "email es requerido"],
-       
+
 
     },
     tipo: {
@@ -17,20 +17,23 @@ const Usuario = Schema({
         enum: ['ADMIN_ROLE', 'USER_ROLE']
 
     },
-    img:{
+    img: {
         type: String,
     },
-    descripcion:{
+    descripcion: {
         type: String,
     },
-    puesto:{
+    puesto: {
         type: String,
+    },
+    other: {
+        type: JSON
     }
-    
+
 })
-Usuario.methods.toJSON = function(){
-    const {__v,_id,...usuario}=this.toObject();
-    usuario.uid=_id
+Usuario.methods.toJSON = function () {
+    const { __v, _id, ...usuario } = this.toObject();
+    usuario.uid = _id
     return usuario;
 }
-export default model('usuario',Usuario);
+export default model('usuario', Usuario);
