@@ -29,9 +29,8 @@ const createVisita = (req, res) => __awaiter(void 0, void 0, void 0, function* (
     const ip = req.ip;
     try {
         const fechaLocal = Date.now();
-        const { fecha = (0, moment_1.default)(fechaLocal).format('YYYY-MM-DD HH:mm-ss') } = req.body;
-        const Visita = new VisitasModels_1.default({ fecha, ip });
-        //Guardar en base de datos
+        const { fecha = (0, moment_1.default)(fechaLocal).format('YYYY-MM-DD HH:mm-ss'), action = { type: 'visita' } } = req.body;
+        const Visita = new VisitasModels_1.default({ fecha, ip, action });
         yield Visita.save();
         res.status(201).send(Visita);
     }

@@ -20,6 +20,9 @@ const Visitas = Schema({
     fecha: {
         type: String
     },
+    action: {
+        type: JSON
+    }
 });
 Visitas.methods.toJSON = function () {
     const _a = this.toObject(), { __v, _id } = _a, visita = __rest(_a, ["__v", "_id"]);

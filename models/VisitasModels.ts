@@ -9,6 +9,9 @@ const Visitas = Schema({
     fecha: {
         type: String
     },
+    action:{
+        type:JSON
+    }
    
 
 
