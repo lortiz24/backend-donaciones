@@ -16,9 +16,7 @@ export const getVisitas = async (req: Request, res: Response) => {
 
 export const createVisita = async (req:any, res: Response) => {
 
-    const ip = req.socket._peername
-    console.log("DDDDDDDDD")
-    console.log(req.socket._peername)
+    const ip = req.ip
 
     try {
         const fechaLocal = Date.now();
