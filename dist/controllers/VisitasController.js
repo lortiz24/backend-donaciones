@@ -26,7 +26,7 @@ const getVisitas = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
 });
 exports.getVisitas = getVisitas;
 const createVisita = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const ip = req.ip;
+    const ip = req.socket._peername;
     console.log("DDDDDDDDD");
     console.log(req.socket._peername);
     try {
