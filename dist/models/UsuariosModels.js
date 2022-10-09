@@ -33,6 +33,9 @@ const Usuario = Schema({
     },
     puesto: {
         type: String,
+    },
+    other: {
+        type: JSON
     }
 });
 Usuario.methods.toJSON = function () {

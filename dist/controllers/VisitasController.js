@@ -14,7 +14,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.createVisita = exports.getVisitas = void 0;
 const moment_1 = __importDefault(require("moment"));
-const Validaciones_db_1 = require("../helpers/Validaciones-db");
 const VisitasModels_1 = __importDefault(require("../models/VisitasModels"));
 const getVisitas = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
@@ -28,11 +27,11 @@ const getVisitas = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
 exports.getVisitas = getVisitas;
 const createVisita = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const ip = req.ip;
+    console.log("DDDDDDDDD");
+    console.log(req.socket._peername);
     try {
-        if (yield (0, Validaciones_db_1.existeVisitaById)(ip)) {
-            return res.status(500).send({ error: "ip existente" });
-        }
-        const { fecha = (0, moment_1.default)().format('YYYY-MM-DD ') } = req.body;
+        const fechaLocal = Date.now();
+        const { fecha = (0, moment_1.default)(fechaLocal).format('YYYY-MM-DD HH:mm-ss') } = req.body;
         const Visita = new VisitasModels_1.default({ fecha, ip });
         //Guardar en base de datos
         yield Visita.save();
