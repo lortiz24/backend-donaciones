@@ -23,7 +23,7 @@ export const getMetricasProyectos = async (req: Request, res: Response) => {
         donaciones.forEach((element: any) => {
             mongoAlcanzado += element.monto_donacion
         });
-        const inicio = moment(proyectos.fecha_inicio);
+        const inicio = moment();
         const final = moment(proyectos.fecha_objetivo);
         const diasFaltantes = final.diff(inicio, "days")
         const procentajeAlcanzado = ((mongoAlcanzado / proyectos.monto_meta) * 100).toFixed()

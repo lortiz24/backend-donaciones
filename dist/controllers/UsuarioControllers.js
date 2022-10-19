@@ -47,7 +47,7 @@ const getUsuario = (req, res) => __awaiter(void 0, void 0, void 0, function* () 
 exports.getUsuario = getUsuario;
 const createUsuario = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     try {
-        const { email, nombre, tipo, descripcion, img, puesto } = req.body;
+        const { email, nombre, tipo, descripcion, img, puesto, other } = req.body;
         let newUsuario = {};
         newUsuario = Object.assign(Object.assign({}, newUsuario), { email,
             nombre,
@@ -58,6 +58,8 @@ const createUsuario = (req, res) => __awaiter(void 0, void 0, void 0, function* 
             newUsuario = Object.assign(Object.assign({}, newUsuario), { img });
         if (puesto !== undefined)
             newUsuario = Object.assign(Object.assign({}, newUsuario), { puesto });
+        if (other !== undefined)
+            newUsuario = Object.assign(Object.assign({}, newUsuario), { other });
         const usuario = new UsuariosModels_1.default(newUsuario);
         //Guardar en base de datos
         yield usuario.save();
@@ -70,7 +72,7 @@ const createUsuario = (req, res) => __awaiter(void 0, void 0, void 0, function* 
 exports.createUsuario = createUsuario;
 const updateUsuario = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { id } = req.params;
-    const { email, nombre, tipo, descripcion, img, puesto } = req.body;
+    const { email, nombre, tipo, descripcion, img, puesto, other } = req.body;
     let updateUsuario = {};
     if (email !== undefined)
         updateUsuario = Object.assign(Object.assign({}, updateUsuario), { email });
@@ -84,6 +86,8 @@ const updateUsuario = (req, res) => __awaiter(void 0, void 0, void 0, function* 
         updateUsuario = Object.assign(Object.assign({}, updateUsuario), { img });
     if (puesto !== undefined)
         updateUsuario = Object.assign(Object.assign({}, updateUsuario), { puesto });
+    if (other !== undefined)
+        updateUsuario = Object.assign(Object.assign({}, updateUsuario), { other });
     //Actualizar en base de datos
     const usuario = yield UsuariosModels_1.default.findByIdAndUpdate(id, updateUsuario);
     res.send(usuario);

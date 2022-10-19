@@ -37,7 +37,7 @@ const getMetricasProyectos = (req, res) => __awaiter(void 0, void 0, void 0, fun
         donaciones.forEach((element) => {
             mongoAlcanzado += element.monto_donacion;
         });
-        const inicio = (0, moment_1.default)(proyectos.fecha_inicio);
+        const inicio = (0, moment_1.default)();
         const final = (0, moment_1.default)(proyectos.fecha_objetivo);
         const diasFaltantes = final.diff(inicio, "days");
         const procentajeAlcanzado = ((mongoAlcanzado / proyectos.monto_meta) * 100).toFixed();
