@@ -4,11 +4,14 @@ const { Schema, model } = require('mongoose')
 const Visitas = Schema({
     ip: {
         type: String,
-        unique: true,
+        unique:false
     },
     fecha: {
         type: String
     },
+    action:{
+        type:JSON
+    }
    
 
 

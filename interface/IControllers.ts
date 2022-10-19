@@ -44,5 +44,5 @@ interface IRequestBodyObjeto {
 }
 interface IRequestBodyVisita {
     fecha: string;
-
+    action: JSON
 }
