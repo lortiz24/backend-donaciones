@@ -26,7 +26,7 @@ const ObjetosVariosRoutes_1 = __importDefault(require("../routes/ObjetosVariosRo
 class Server {
     constructor() {
         this.app = (0, express_1.default)();
-        this.port = process.env.PORT || '8000';
+        this.port = process.env.PORT || '8080';
         //Inicializando rutas
         this.usuarioRoute = '/api/usuarios';
         this.proyectosRoute = '/api/proyectos';

@@ -15,9 +15,8 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.dbConnection = void 0;
 const mongoose_1 = __importDefault(require("mongoose"));
 const dbConnection = () => __awaiter(void 0, void 0, void 0, function* () {
-    var _a;
     try {
-        yield mongoose_1.default.connect((_a = process.env.MONGO_CNN) !== null && _a !== void 0 ? _a : '');
+        yield mongoose_1.default.connect('mongodb+srv://donaciones:VrR4IJd7bPGGURhY@cluster0.pmj9moh.mongodb.net/?retryWrites=true&w=majority');
         console.log('Database online');
     }
     catch (error) {
